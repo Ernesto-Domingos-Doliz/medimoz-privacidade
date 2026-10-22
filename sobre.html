@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Conheça o MediMoz, uma aplicação que aproxima as pessoas dos profissionais de saúde em Moçambique.">
+
+    <meta name="theme-color" content="#1565c0">
+
+    <title>Sobre o MediMoz | A saúde mais perto de ti</title>
+
+    <style>
+        :root {
+            --azul: #1565c0;
+            --verde: #16a34a;
+            --fundo: #f4f8fb;
+            --texto: #2d3741;
+            --secundario: #607080;
+            --branco: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            line-height: 1.7;
+        }
+
+        header {
+            padding: 48px 20px;
+            text-align: center;
+            color: var(--branco);
+            background: linear-gradient(135deg, var(--azul), var(--verde));
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(30px, 6vw, 46px);
+        }
+
+        header p {
+            margin: 12px 0 0;
+            font-size: 19px;
+        }
+
+        main {
+            width: min(900px, 92%);
+            margin: 28px auto;
+        }
+
+        section {
+            background: var(--branco);
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: var(--azul);
+            font-size: 22px;
+            margin-top: 0;
+        }
+
+        .destaque {
+            border-left: 5px solid var(--verde);
+        }
+
+        .lista {
+            padding-left: 24px;
+        }
+
+        .lista li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--azul);
+            overflow-wrap: anywhere;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 8px;
+            border-radius: 10px;
+            background: var(--verde);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            opacity: 0.9;
+        }
+
+        .aviso {
+            font-size: 14px;
+            color: var(--secundario);
+        }
+
+        footer {
+            padding: 28px 16px;
+            text-align: center;
+            color: var(--secundario);
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 36px 16px;
+            }
+
+            section {
+                padding: 19px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🩺 Sobre o MediMoz</h1>
+    <p>A saúde mais perto de ti. 💚</p>
+</header>
+
+<main>
+
+    <section class="destaque">
+        <h2>🌍 O que é o MediMoz?</h2>
+
+        <p>
+            O MediMoz é uma aplicação concebida para aproximar
+            as pessoas dos profissionais de saúde e facilitar
+            o acesso a informações educativas sobre saúde.
+        </p>
+
+        <p>
+            Nesta primeira fase, o projeto está orientado para
+            a Cidade da Beira, província de Sofala, Moçambique.
+        </p>
+    </section>
+
+    <section>
+        <h2>🎯 A nossa missão</h2>
+
+        <p>
+            Contribuir para uma comunidade mais informada,
+            facilitando o acesso a informações de saúde e
+            aos contactos dos profissionais apresentados
+            na plataforma.
+        </p>
+
+        <p>
+            Queremos tornar a informação mais acessível e
+            ajudar as pessoas a procurar assistência de forma
+            consciente.
+        </p>
+    </section>
+
+    <section>
+        <h2>🤝 O que podes encontrar?</h2>
+
+        <ul class="lista">
+            <li>Perfis de profissionais de saúde.</li>
+            <li>Especialidades e qualificações disponibilizadas.</li>
+            <li>Horários e localizações informados pelos profissionais.</li>
+            <li>Contactos telefónicos e WhatsApp, quando fornecidos.</li>
+            <li>Dicas educativas sobre prevenção, higiene e cuidados gerais de saúde.</li>
+        </ul>
+
+        <p class="aviso">
+            A disponibilidade e a exatidão das informações dependem
+            dos dados introduzidos e das verificações efetivamente realizadas.
+        </p>
+    </section>
+
+    <section>
+        <h2>📍 Onde estamos a começar?</h2>
+
+        <p>
+            O MediMoz começa pela Cidade da Beira, província de
+            Sofala, em Moçambique.
+        </p>
+
+        <p>
+            O projeto pretende desenvolver-se de forma responsável,
+            respeitando a privacidade dos utilizadores e os requisitos
+            aplicáveis aos serviços de saúde.
+        </p>
+    </section>
+
+    <section>
+        <h2>🔒 Privacidade e confiança</h2>
+
+        <p>
+            A privacidade é importante para o MediMoz.
+            Consulta a nossa Política de Privacidade para conhecer
+            as informações sobre o tratamento de dados pessoais.
+        </p>
+
+        <a class="botao"
+           href="https://ernesto-domingos-doliz.github.io/medimoz-privacidade/">
+            Ler Política de Privacidade
+        </a>
+    </section>
+
+    <section>
+        <h2>⚕️ Informação importante</h2>
+
+        <p>
+            As dicas apresentadas no MediMoz têm finalidade educativa.
+            Não substituem uma consulta, um diagnóstico, uma prescrição
+            ou um tratamento realizado por um profissional de saúde habilitado.
+        </p>
+
+        <p>
+            Em caso de sintomas preocupantes ou de emergência,
+            procura assistência médica adequada. Não adies os cuidados
+            de saúde com base apenas nas informações apresentadas na aplicação.
+        </p>
+    </section>
+
+    <section>
+        <h2>📧 Contacto</h2>
+
+        <p>
+            Para questões relacionadas com o projeto MediMoz,
+            podes contactar-nos por e-mail.
+        </p>
+
+        <p>
+            <strong>E-mail:</strong>
+            <a href="mailto:tddolis16@gmail.com">
+                tddolis16@gmail.com
+            </a>
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p><strong>MediMoz</strong> — A saúde mais perto de ti. 💚</p>
+    <p>© 2026 MediMoz. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+  </html>
