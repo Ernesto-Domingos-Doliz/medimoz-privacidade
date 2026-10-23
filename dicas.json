@@ -1,5 +1,113 @@
 [
   {
+    "titulo": "Tenha uma alimentação variada",
+    "categoria": "🥗 Alimentação",
+    "resumo": "Combine diferentes alimentos nas suas refeições.",
+    "conteudo": "Uma alimentação variada ajuda o organismo a obter os nutrientes de que necessita.\n\n• Inclua frutas e hortaliças nas suas refeições.\n• Consuma alimentos como feijão, ervilha e amendoim.\n• Varie as fontes de proteínas, incluindo peixe, ovos e outras opções disponíveis.\n• Prefira alimentos frescos e reduza o consumo excessivo de produtos muito salgados, açucarados ou gordurosos.\n\nUma alimentação equilibrada deve considerar as necessidades individuais, a cultura alimentar e os alimentos disponíveis."
+  },
+  {
+    "titulo": "Lave os alimentos antes de consumir",
+    "categoria": "🥗 Alimentação",
+    "resumo": "A higiene dos alimentos ajuda a prevenir doenças.",
+    "conteudo": "Frutas e hortaliças podem transportar sujidade e microrganismos.\n\n• Lave bem as mãos antes de preparar os alimentos.\n• Lave as frutas e hortaliças com água potável.\n• Utilize utensílios e superfícies limpos.\n• Separe alimentos crus dos alimentos já cozinhados.\n• Cozinhe bem os alimentos, especialmente carne, peixe e ovos.\n• Guarde os alimentos perecíveis em condições adequadas de conservação.\n\nEvite consumir alimentos com cheiro, aspeto ou conservação suspeitos."
+  },
+  {
+    "titulo": "Reduza o consumo excessivo de sal e açúcar",
+    "categoria": "🥗 Alimentação",
+    "resumo": "Pequenas mudanças alimentares podem beneficiar a saúde.",
+    "conteudo": "O consumo excessivo de sal pode contribuir para o aumento da pressão arterial. O excesso de açúcar também pode prejudicar a saúde.\n\n• Evite adicionar sal em excesso à comida.\n• Reduza o consumo frequente de refrigerantes e bebidas muito açucaradas.\n• Prefira água como bebida habitual.\n• Experimente temperar os alimentos com alho, cebola e ervas aromáticas.\n• Leia os rótulos dos alimentos embalados quando estiverem disponíveis.\n\nPessoas com necessidades alimentares específicas devem procurar orientação de um profissional de saúde."
+  },
+  {
+    "titulo": "Beba água regularmente",
+    "categoria": "💧 Hidratação",
+    "resumo": "A água é essencial para o funcionamento do organismo.",
+    "conteudo": "O organismo precisa de água para regular a temperatura corporal e realizar várias funções.\n\n• Beba água regularmente ao longo do dia.\n• Tenha especial atenção à hidratação em dias quentes.\n• Beba água durante e depois de atividades físicas.\n• Não espere sempre sentir muita sede para beber.\n• Utilize água potável para beber e preparar alimentos.\n\nA quantidade necessária varia conforme a idade, o clima, a atividade física e o estado de saúde. Pessoas com restrições de líquidos indicadas por profissionais devem seguir essas orientações."
+  },
+  {
+    "titulo": "Reconheça os sinais de desidratação",
+    "categoria": "💧 Hidratação",
+    "resumo": "A desidratação pode tornar-se perigosa se não for tratada.",
+    "conteudo": "A desidratação acontece quando o organismo perde mais líquidos do que recebe.\n\nAlguns sinais possíveis são:\n• Sede intensa.\n• Boca seca.\n• Urina mais escura ou em menor quantidade.\n• Tonturas e fraqueza.\n\nEm caso de diarreia ou vómitos, a solução de reidratação oral preparada corretamente pode ajudar a repor água e sais perdidos.\n\nProcure assistência médica rapidamente se houver confusão, desmaio, incapacidade de beber ou outros sinais graves, sobretudo em crianças pequenas e idosos."
+  },
+  {
+    "titulo": "Tenha cuidado com a água que consome",
+    "categoria": "💧 Hidratação",
+    "resumo": "Água contaminada pode transmitir doenças.",
+    "conteudo": "A água aparentemente limpa nem sempre é segura para beber.\n\n• Utilize água de uma fonte considerada segura.\n• Se houver indicação de que a água não é segura, siga as orientações das autoridades de saúde.\n• Quando recomendado, ferva a água ou utilize um método de tratamento apropriado.\n• Guarde a água em recipientes limpos e bem tapados.\n• Evite mergulhar mãos ou utensílios sujos nos recipientes de armazenamento.\n\nSe suspeitar de contaminação da água, procure informações junto das autoridades sanitárias locais."
+  },
+  {
+    "titulo": "Proteja-se das picadas de mosquitos",
+    "categoria": "🦟 Malária",
+    "resumo": "A prevenção das picadas ajuda a reduzir o risco de malária.",
+    "conteudo": "A malária é transmitida pela picada de mosquitos Anopheles infetados.\n\nPara reduzir o risco:\n• Durma debaixo de uma rede mosquiteira tratada com inseticida, conforme as orientações locais.\n• Utilize repelente apropriado seguindo as instruções do produto.\n• Coloque redes nas portas e janelas, quando possível.\n• Elimine recipientes com água parada e siga as medidas locais de controlo de mosquitos.\n\nEstas medidas reduzem o risco, mas não garantem proteção total contra a malária."
+  },
+  {
+    "titulo": "Não ignore a febre",
+    "categoria": "🦟 Malária",
+    "resumo": "A febre pode ser um sinal de malária ou de outra doença.",
+    "conteudo": "A malária pode provocar febre, arrepios, dor de cabeça, cansaço e outros sintomas.\n\n• Se tiver febre e viver ou tiver viajado para uma zona com transmissão de malária, procure avaliação médica rapidamente.\n• Faça o teste recomendado por um profissional de saúde.\n• Não confie apenas nos sintomas para determinar se tem malária.\n• Não tome medicamentos antimaláricos por iniciativa própria.\n\nA malária pode evoluir rapidamente para uma situação grave. Confusão, convulsões, dificuldade respiratória ou perda de consciência exigem assistência de emergência."
+  },
+  {
+    "titulo": "Complete o tratamento prescrito para malária",
+    "categoria": "🦟 Malária",
+    "resumo": "Siga as orientações do profissional de saúde.",
+    "conteudo": "Quando a malária é confirmada, o tratamento adequado é importante para a recuperação.\n\n• Tome os medicamentos exatamente como foram prescritos.\n• Respeite as doses e a duração indicadas.\n• Não partilhe os seus medicamentos com outras pessoas.\n• Não interrompa nem altere o tratamento sem orientação profissional.\n• Se vomitar depois de tomar um medicamento, ou se os sintomas persistirem ou piorarem, contacte um profissional de saúde.\n\nO medicamento adequado depende de fatores como o tipo de malária, a gravidade da doença e as características do paciente."
+  },
+  {
+    "titulo": "Pratique atividade física regularmente",
+    "categoria": "❤️ Coração",
+    "resumo": "Movimentar o corpo contribui para a saúde cardiovascular.",
+    "conteudo": "A atividade física regular pode ajudar a melhorar a saúde do coração e o bem-estar geral.\n\n• Caminhe a um ritmo confortável.\n• Escolha atividades adequadas à sua condição física.\n• Reduza o tempo passado sentado sem interrupções.\n• Comece gradualmente se não estiver habituado a fazer exercício.\n• Respeite os seus limites e procure orientação se tiver problemas de saúde.\n\nSe sentir dor no peito, desmaio ou falta de ar intensa durante a atividade, pare e procure assistência médica urgente."
+  },
+  {
+    "titulo": "Verifique a sua pressão arterial",
+    "categoria": "❤️ Coração",
+    "resumo": "A pressão arterial elevada pode não provocar sintomas.",
+    "conteudo": "A hipertensão arterial aumenta o risco de doenças do coração, dos rins e de acidentes vasculares cerebrais.\n\n• Verifique a pressão arterial numa unidade sanitária ou noutro local com equipamento adequado.\n• Faça medições regularmente conforme a orientação profissional.\n• Se receber um resultado elevado, procure aconselhamento de um profissional de saúde.\n• Se já utiliza medicamentos para a pressão arterial, não altere a dose por conta própria.\n\nDor no peito, dificuldade respiratória súbita ou fraqueza súbita num lado do corpo exigem assistência de emergência."
+  },
+  {
+    "titulo": "Evite fumar e proteja o seu coração",
+    "categoria": "❤️ Coração",
+    "resumo": "O tabaco prejudica o coração e os vasos sanguíneos.",
+    "conteudo": "Fumar aumenta o risco de doenças cardiovasculares e de vários tipos de cancro. O fumo passivo também prejudica a saúde.\n\n• Evite fumar cigarros e utilizar produtos de tabaco.\n• Procure apoio profissional se quiser deixar de fumar.\n• Evite ambientes com fumo sempre que possível.\n• Combine hábitos saudáveis, como alimentação equilibrada e atividade física adequada.\n• Procure controlar a pressão arterial, o colesterol e a glicemia quando recomendado.\n\nDeixar de fumar traz benefícios para a saúde em qualquer idade."
+  },
+  {
+    "titulo": "Lave as mãos nos momentos certos",
+    "categoria": "🧼 Higiene",
+    "resumo": "A lavagem das mãos ajuda a prevenir infeções.",
+    "conteudo": "As mãos podem transportar microrganismos que causam doenças.\n\nLave as mãos com água e sabão:\n• Antes de preparar ou comer alimentos.\n• Depois de utilizar a casa de banho.\n• Depois de limpar uma criança ou mudar uma fralda.\n• Depois de tossir, espirrar ou assoar o nariz.\n• Depois de tocar em lixo ou em superfícies muito sujas.\n\nEsfregue as mãos durante pelo menos 20 segundos, incluindo as palmas, as costas das mãos, entre os dedos e debaixo das unhas. Enxague e seque com material limpo."
+  },
+  {
+    "titulo": "Mantenha os alimentos e utensílios limpos",
+    "categoria": "🧼 Higiene",
+    "resumo": "A limpeza adequada reduz o risco de contaminação.",
+    "conteudo": "Uma boa higiene na cozinha ajuda a prevenir doenças transmitidas por alimentos.\n\n• Lave as mãos antes de cozinhar.\n• Limpe as superfícies utilizadas na preparação dos alimentos.\n• Utilize utensílios limpos.\n• Separe carne e peixe crus dos alimentos prontos a consumir.\n• Proteja os alimentos contra moscas, baratas e outros animais.\n• Conserve os alimentos à temperatura adequada.\n\nNão utilize produtos de limpeza doméstica diretamente nos alimentos. Para higienizar frutas e hortaliças, siga orientações sanitárias seguras."
+  },
+  {
+    "titulo": "Mantenha o ambiente doméstico limpo",
+    "categoria": "🧼 Higiene",
+    "resumo": "Um ambiente limpo contribui para a prevenção de doenças.",
+    "conteudo": "Os cuidados com o ambiente ajudam a reduzir alguns riscos para a saúde.\n\n• Coloque o lixo em recipientes apropriados.\n• Mantenha os recipientes de água tapados.\n• Elimine água parada onde os mosquitos se possam reproduzir.\n• Limpe regularmente as áreas de preparação de alimentos.\n• Mantenha as instalações sanitárias limpas.\n• Guarde medicamentos e produtos químicos fora do alcance das crianças.\n\nEvite misturar produtos de limpeza, especialmente lixívia com ácidos ou produtos que contenham amoníaco, pois podem libertar gases tóxicos."
+  },
+  {
+    "titulo": "Procure assistência médica quando necessário",
+    "categoria": "🏥 Assistência médica",
+    "resumo": "Não espere que todos os sintomas desapareçam sozinhos.",
+    "conteudo": "Procurar assistência atempadamente pode ajudar a identificar e tratar problemas de saúde.\n\n• Consulte um profissional se os sintomas persistirem, piorarem ou forem preocupantes.\n• Procure avaliação para febre em zonas com transmissão de malária.\n• Não utilize medicamentos prescritos a outra pessoa.\n• Informe o profissional sobre os medicamentos que já toma e as suas alergias conhecidas.\n\nDificuldade respiratória intensa, perda de consciência, hemorragia grave ou sinais de AVC exigem assistência de emergência imediata."
+  },
+  {
+    "titulo": "Não utilize antibióticos sem orientação",
+    "categoria": "🏥 Assistência médica",
+    "resumo": "O uso incorreto de antibióticos pode causar problemas.",
+    "conteudo": "Os antibióticos tratam determinadas infeções bacterianas, mas não tratam doenças causadas por vírus, como a gripe comum.\n\n• Utilize antibióticos apenas quando prescritos por um profissional habilitado.\n• Não partilhe os seus antibióticos com outras pessoas.\n• Não utilize sobras de tratamentos anteriores.\n• Siga as instruções recebidas sobre a toma do medicamento.\n• Informe o profissional sobre alergias ou reações anteriores.\n\nO uso inadequado de antibióticos contribui para a resistência antimicrobiana, tornando algumas infeções mais difíceis de tratar."
+  },
+  {
+    "titulo": "Prepare-se antes de uma consulta",
+    "categoria": "🏥 Assistência médica",
+    "resumo": "Organizar as informações ajuda a aproveitar melhor a consulta.",
+    "conteudo": "Preparar-se antes de uma consulta pode facilitar a comunicação com o profissional de saúde.\n\n• Anote os sintomas e quando começaram.\n• Leve os resultados de exames anteriores, se os tiver.\n• Informe sobre os medicamentos e suplementos que utiliza.\n• Comunique alergias conhecidas.\n• Prepare as perguntas que pretende fazer.\n• Peça esclarecimentos se não compreender alguma orientação.\n\nPartilhe informações verdadeiras e completas. Se não compreender como utilizar um medicamento, peça que as instruções sejam explicadas novamente."
+  },
+  {
     "titulo": "A importância da prevenção da malária",
     "categoria": "🦟 Malária",
     "resumo": "Conhece algumas medidas que ajudam a reduzir o risco de malária.",
