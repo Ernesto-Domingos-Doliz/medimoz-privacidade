@@ -244,86 +244,120 @@
     </footer>
 
   </main>
+	
+	<script>
+  const ENDPOINT_SUPABASE =
+    "https://ooqvhqnqqiqltnrexmyz.supabase.co/functions/v1/registar-profissional";
 
-  <script>
-    /*
-      IMPORTANTE:
-      Substitui o valor abaixo pelo endereço real da função
-      registar-profissional, copiado do painel do Supabase.
-    */
-    const ENDPOINT_SUPABASE =
-      "https://ooqvhqnqqiqltnrexmyz.supabase.co/functions/v1/registar-profissional";
+  /*
+   * Coloca aqui a chave PUBLISHABLE do projeto Supabase.
+   * Não uses SUPABASE_SECRET_KEY nem outra chave secreta.
+   */
+  const CHAVE_PUBLICA_SUPABASE =
+    "sb_publishable_TXPK6yBtkC7Lskj9UrqwCg_p-wsmDy8";
 
-    const formulario = document.getElementById("formulario");
-    const botaoEnviar = document.getElementById("botaoEnviar");
-    const mensagem = document.getElementById("mensagem");
+  const formulario = document.getElementById("formulario");
+  const botaoEnviar = document.getElementById("botaoEnviar");
+  const mensagem = document.getElementById("mensagem");
 
-    formulario.addEventListener("submit", async function(evento) {
-      evento.preventDefault();
+  formulario.addEventListener("submit", async function(evento) {
+    evento.preventDefault();
 
-      mensagem.className = "";
-      mensagem.style.display = "none";
-      mensagem.textContent = "";
+    mensagem.className = "";
+    mensagem.style.display = "none";
+    mensagem.textContent = "";
 
-      if (ENDPOINT_SUPABASE ===
-          "COLOCA_AQUI_O_ENDERECO_DA_FUNCAO") {
+    if (
+      !CHAVE_PUBLICA_SUPABASE ||
+      CHAVE_PUBLICA_SUPABASE ===
+        "COLOCA_AQUI_A_TUA_CHAVE_PUBLISHABLE"
+    ) {
+      mensagem.className = "erro";
+      mensagem.textContent =
+        "O serviço ainda não está configurado. Tenta mais tarde.";
+      mensagem.style.display = "block";
+      return;
+    }
+
+    if (!formulario.reportValidity()) {
+      return;
+    }
+
+    const foto = formulario.elements["foto"].files[0];
+    const documento = formulario.elements["documento"].files[0];
+    const certificado = formulario.elements["certificado"].files[0];
+
+    if (!documento || !certificado) {
+      mensagem.className = "erro";
+      mensagem.textContent =
+        "Seleciona o documento de identificação e o certificado.";
+      mensagem.style.display = "block";
+      return;
+    }
+
+    const tamanhoMaximo = 5 * 1024 * 1024;
+
+    for (const ficheiro of [foto, documento, certificado]) {
+      if (ficheiro && ficheiro.size > tamanhoMaximo) {
         mensagem.className = "erro";
         mensagem.textContent =
-          "A configuração do serviço ainda não foi concluída.";
+          "Cada ficheiro deve ter no máximo 5 MB.";
+        mensagem.style.display = "block";
         return;
       }
+    }
 
-      const dados = {
-        nome: formulario.nome.value.trim(),
-        especialidade: formulario.especialidade.value.trim(),
-        apresentacao: formulario.apresentacao.value.trim(),
-        qualificacoes: formulario.qualificacoes.value.trim(),
-        horario: formulario.horario.value.trim(),
-        localizacao: formulario.localizacao.value.trim(),
-        telefone: formulario.telefone.value.trim(),
-        whatsapp: formulario.whatsapp.value.trim()
-      };
+    const dados = new FormData(formulario);
 
-      botaoEnviar.disabled = true;
-      botaoEnviar.textContent = "A enviar...";
+    botaoEnviar.disabled = true;
+    botaoEnviar.textContent = "A enviar...";
+    mensagem.style.display = "block";
+    mensagem.textContent = "A enviar a candidatura. Aguarda, por favor.";
+
+    try {
+      const resposta = await fetch(ENDPOINT_SUPABASE, {
+        method: "POST",
+        headers: {
+          "apikey": CHAVE_PUBLICA_SUPABASE
+        },
+        body: dados
+      });
+
+      let resultado;
 
       try {
-        const resposta = await fetch(ENDPOINT_SUPABASE, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(dados)
-        });
-
-        const resultado = await resposta.json();
-
-        if (!resposta.ok) {
-          throw new Error(
-            resultado.erro ||
-            "Não foi possível enviar a candidatura."
-          );
-        }
-
-        mensagem.className = "sucesso";
-        mensagem.textContent =
-          "Candidatura enviada com sucesso! " +
-          "O teu registo ficará pendente até ser analisado " +
-          "pelo administrador.";
-
-        formulario.reset();
-
-      } catch (erro) {
-        mensagem.className = "erro";
-        mensagem.textContent =
-          erro.message ||
-          "Não foi possível contactar o serviço. Tenta novamente.";
-      } finally {
-        botaoEnviar.disabled = false;
-        botaoEnviar.textContent = "Enviar candidatura";
+        resultado = await resposta.json();
+      } catch {
+        throw new Error(
+          "O serviço devolveu uma resposta inesperada. Tenta novamente."
+        );
       }
-    });
-  </script>
 
+      if (!resposta.ok) {
+        throw new Error(
+          resultado.erro ||
+          "Não foi possível enviar a candidatura."
+        );
+      }
+
+      mensagem.className = "sucesso";
+      mensagem.textContent =
+        "Candidatura enviada com sucesso! " +
+        "O teu registo ficará pendente até ser analisado pelo administrador.";
+
+      formulario.reset();
+
+    } catch (erro) {
+      mensagem.className = "erro";
+      mensagem.textContent =
+        erro.message ||
+        "Não foi possível contactar o serviço. Tenta novamente.";
+    } finally {
+      botaoEnviar.disabled = false;
+      botaoEnviar.textContent = "Enviar candidatura";
+    }
+  });
+</script>
+  
 </body>
 </html>
