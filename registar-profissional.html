@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Registo de Profissional | MediMoz</title>
+
+  <meta name="description"
+        content="Formulário de candidatura para profissionais de saúde no MediMoz.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #F4F8FB;
+      color: #173D56;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 20px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      text-align: center;
+      color: #1261A0;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 23px;
+    }
+
+    .descricao {
+      text-align: center;
+      line-height: 1.6;
+      color: #526777;
+    }
+
+    label {
+      display: block;
+      margin-top: 17px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #CBD5DF;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .nota {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #EAF4FC;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #1261A0;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #8299AA;
+      cursor: wait;
+    }
+
+    #mensagem {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+
+    .sucesso {
+      display: block !important;
+      color: #14532D;
+      background: #DCFCE7;
+    }
+
+    .erro {
+      display: block !important;
+      color: #991B1B;
+      background: #FEE2E2;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 13px;
+      color: #526777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <div class="logo">MediMoz</div>
+
+    <h1>Registo de Profissional de Saúde</h1>
+
+    <p class="descricao">
+      Preenche os teus dados profissionais para submeter
+      uma candidatura ao MediMoz.
+    </p>
+
+    <div class="nota">
+      <strong>Importante:</strong>
+      o envio do formulário não garante a aprovação.
+      Os dados serão analisados pelo administrador antes
+      de o perfil ser disponibilizado.
+    </div>
+
+    <form id="formulario">
+
+      <label for="nome">Nome completo *</label>
+      <input id="nome" name="nome"
+             type="text" maxlength="150"
+             autocomplete="name" required>
+
+      <label for="especialidade">Especialidade ou profissão *</label>
+      <input id="especialidade" name="especialidade"
+             type="text" maxlength="150" required>
+
+      <label for="apresentacao">Apresentação profissional *</label>
+      <textarea id="apresentacao" name="apresentacao"
+                maxlength="3000" required></textarea>
+
+      <label for="qualificacoes">Qualificações profissionais *</label>
+      <textarea id="qualificacoes" name="qualificacoes"
+                maxlength="3000" required></textarea>
+
+      <label for="horario">Horário de atendimento *</label>
+      <input id="horario" name="horario"
+             type="text" maxlength="500" required>
+
+      <label for="localizacao">Localização *</label>
+      <input id="localizacao" name="localizacao"
+             type="text" maxlength="500"
+             placeholder="Ex.: Beira, Sofala" required>
+
+      <label for="telefone">Telefone *</label>
+      <input id="telefone" name="telefone"
+             type="tel" maxlength="40"
+             autocomplete="tel" required>
+
+      <label for="whatsapp">WhatsApp (opcional)</label>
+      <input id="whatsapp" name="whatsapp"
+             type="tel" maxlength="40">
+
+      <div class="nota">
+        Nesta etapa, o formulário envia apenas os dados de texto.
+        Não anexes nem envies documentos de identificação ou
+        certificados por este formulário ainda.
+      </div>
+
+      <button id="botaoEnviar" type="submit">
+        Enviar candidatura
+      </button>
+
+      <div id="mensagem" role="status"
+           aria-live="polite"></div>
+
+    </form>
+
+    <footer>
+      MediMoz — A saúde mais perto de ti.
+    </footer>
+
+  </main>
+
+  <script>
+    /*
+      IMPORTANTE:
+      Substitui o valor abaixo pelo endereço real da função
+      registar-profissional, copiado do painel do Supabase.
+    */
+    const ENDPOINT_SUPABASE =
+      "https://ooqvhqnqqiqltnrexmyz.supabase.co/functions/v1/registar-profissional";
+
+    const formulario = document.getElementById("formulario");
+    const botaoEnviar = document.getElementById("botaoEnviar");
+    const mensagem = document.getElementById("mensagem");
+
+    formulario.addEventListener("submit", async function(evento) {
+      evento.preventDefault();
+
+      mensagem.className = "";
+      mensagem.style.display = "none";
+      mensagem.textContent = "";
+
+      if (ENDPOINT_SUPABASE ===
+          "COLOCA_AQUI_O_ENDERECO_DA_FUNCAO") {
+        mensagem.className = "erro";
+        mensagem.textContent =
+          "A configuração do serviço ainda não foi concluída.";
+        return;
+      }
+
+      const dados = {
+        nome: formulario.nome.value.trim(),
+        especialidade: formulario.especialidade.value.trim(),
+        apresentacao: formulario.apresentacao.value.trim(),
+        qualificacoes: formulario.qualificacoes.value.trim(),
+        horario: formulario.horario.value.trim(),
+        localizacao: formulario.localizacao.value.trim(),
+        telefone: formulario.telefone.value.trim(),
+        whatsapp: formulario.whatsapp.value.trim()
+      };
+
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = "A enviar...";
+
+      try {
+        const resposta = await fetch(ENDPOINT_SUPABASE, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(dados)
+        });
+
+        const resultado = await resposta.json();
+
+        if (!resposta.ok) {
+          throw new Error(
+            resultado.erro ||
+            "Não foi possível enviar a candidatura."
+          );
+        }
+
+        mensagem.className = "sucesso";
+        mensagem.textContent =
+          "Candidatura enviada com sucesso! " +
+          "O teu registo ficará pendente até ser analisado " +
+          "pelo administrador.";
+
+        formulario.reset();
+
+      } catch (erro) {
+        mensagem.className = "erro";
+        mensagem.textContent =
+          erro.message ||
+          "Não foi possível contactar o serviço. Tenta novamente.";
+      } finally {
+        botaoEnviar.disabled = false;
+        botaoEnviar.textContent = "Enviar candidatura";
+      }
+    });
+  </script>
+
+</body>
+</html>
