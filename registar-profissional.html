@@ -1,70 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Registo de Profissional | MediMoz</title>
-
-  <meta name="description"
-        content="Formulário de candidatura para profissionais de saúde no MediMoz.">
+  <meta name="theme-color" content="#1261A0">
+  <title>Área do Profissional | MediMoz</title>
 
   <style>
+    :root {
+      --azul: #1261A0;
+      --verde: #168A62;
+      --fundo: #F4F8FB;
+      --texto: #173D56;
+      --branco: #FFFFFF;
+      --erro: #B42318;
+    }
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: #F4F8FB;
-      color: #173D56;
+      padding: 20px 12px;
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .container {
-      max-width: 650px;
-      margin: 20px auto;
-      padding: 25px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 22px;
     }
 
     .logo {
-      text-align: center;
-      color: #1261A0;
-      font-size: 30px;
+      color: var(--azul);
+      font-size: 32px;
       font-weight: bold;
+      margin-bottom: 8px;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 23px;
+    .cabecalho p {
+      margin: 6px 0;
+      line-height: 1.5;
     }
 
-    .descricao {
-      text-align: center;
-      line-height: 1.6;
-      color: #526777;
+    .cartao {
+      background: var(--branco);
+      padding: 22px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(23, 61, 86, 0.08);
+    }
+
+    h2 {
+      color: var(--azul);
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    h3 {
+      color: var(--texto);
+      margin-top: 22px;
     }
 
     label {
       display: block;
-      margin-top: 17px;
-      margin-bottom: 7px;
       font-weight: bold;
+      margin: 15px 0 7px;
     }
 
-    input,
-    textarea,
-    select {
+    input, textarea {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #CBD5DF;
+      padding: 13px;
+      border: 1px solid #CBD5E1;
       border-radius: 8px;
       font-size: 16px;
-      background: white;
+      color: var(--texto);
+      background: #FFFFFF;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid rgba(18, 97, 160, 0.2);
+      border-color: var(--azul);
     }
 
     textarea {
@@ -72,287 +97,887 @@
       resize: vertical;
     }
 
-    .nota {
-      margin-top: 20px;
-      padding: 12px;
-      border-radius: 8px;
-      background: #EAF4FC;
-      line-height: 1.5;
+    input[type="file"] {
+      padding: 10px;
       font-size: 14px;
     }
 
     button {
       width: 100%;
-      margin-top: 25px;
       padding: 14px;
+      margin-top: 16px;
       border: none;
-      border-radius: 8px;
-      background: #1261A0;
+      border-radius: 9px;
+      background: var(--azul);
       color: white;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    button:disabled {
-      background: #8299AA;
-      cursor: wait;
+    button.verde {
+      background: var(--verde);
     }
 
-    #mensagem {
+    button.secundario {
+      background: #E8F0F7;
+      color: var(--azul);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .mensagem {
       display: none;
-      margin-top: 18px;
-      padding: 14px;
+      padding: 13px;
+      margin-top: 15px;
       border-radius: 8px;
       line-height: 1.5;
+      overflow-wrap: anywhere;
     }
 
     .sucesso {
-      display: block !important;
-      color: #14532D;
-      background: #DCFCE7;
+      display: block;
+      background: #E8F6EF;
+      color: #12613F;
     }
 
-    .erro {
-      display: block !important;
-      color: #991B1B;
-      background: #FEE2E2;
+    .falha {
+      display: block;
+      background: #FDECEC;
+      color: var(--erro);
     }
 
-    footer {
-      text-align: center;
-      margin-top: 25px;
-      font-size: 13px;
+    .informacao {
+      display: block;
+      background: #EAF3FB;
+      color: #174B73;
+    }
+
+    .nota {
       color: #526777;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .separador {
+      border: 0;
+      border-top: 1px solid #E2E8F0;
+      margin: 22px 0;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .rodape {
+      text-align: center;
+      font-size: 13px;
+      color: #64748B;
+      margin: 22px 0;
+    }
+
+    .estado-conta {
+      background: #E8F6EF;
+      border-radius: 8px;
+      padding: 12px;
+      overflow-wrap: anywhere;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 12px 8px;
+      }
+
+      .cartao {
+        padding: 17px;
+      }
+
+      .logo {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <main class="container">
 
-    <div class="logo">MediMoz</div>
+    <header class="cabecalho">
+      <div class="logo">MediMoz</div>
+      <h2>Área do Profissional de Saúde</h2>
+      <p>Cria a tua conta e candidata-te para fazer parte da rede MediMoz.</p>
+    </header>
 
-    <h1>Registo de Profissional de Saúde</h1>
+    <!-- ÁREA DE AUTENTICAÇÃO -->
+    <section id="areaAutenticacao" class="cartao">
+      <h2>Acesso à conta</h2>
 
-    <p class="descricao">
-      Preenche os teus dados profissionais para submeter
-      uma candidatura ao MediMoz.
-    </p>
+      <p class="nota">
+        Cria uma conta com o teu e-mail ou inicia sessão se já estiveres registado.
+      </p>
 
-    <div class="nota">
-      <strong>Importante:</strong>
-      o envio do formulário não garante a aprovação.
-      Os dados serão analisados pelo sistema antes
-      de o perfil ser disponibilizado.
-    </div>
+      <form id="formCriarConta">
+        <h3>Criar nova conta</h3>
 
-    <form id="formulario">
+        <label for="novoEmail">E-mail</label>
+        <input
+          type="email"
+          id="novoEmail"
+          autocomplete="email"
+          required
+          maxlength="254"
+          placeholder="exemplo@email.com">
 
-      <label for="nome">Nome completo *</label>
-      <input id="nome" name="nome"
-             type="text" maxlength="150"
-             autocomplete="name" required>
+        <label for="novaSenha">Palavra-passe</label>
+        <input
+          type="password"
+          id="novaSenha"
+          autocomplete="new-password"
+          required
+          minlength="8"
+          placeholder="Mínimo de 8 caracteres">
 
-      <label for="especialidade">Especialidade ou profissão *</label>
-      <input id="especialidade" name="especialidade"
-             type="text" maxlength="150" required>
+        <button type="submit" id="btnCriarConta" class="verde">
+          Criar conta
+        </button>
+      </form>
 
-      <label for="apresentacao">Apresentação profissional *</label>
-      <textarea id="apresentacao" name="apresentacao"
-                maxlength="3000" required></textarea>
+      <div id="mensagemCriarConta" class="mensagem" role="status"></div>
 
-      <label for="qualificacoes">Qualificações profissionais *</label>
-      <textarea id="qualificacoes" name="qualificacoes"
-                maxlength="3000" required></textarea>
+      <hr class="separador">
 
-      <label for="horario">Horário de atendimento *</label>
-      <input id="horario" name="horario"
-             type="text" maxlength="500" required>
+      <form id="formEntrar">
+        <h3>Já tenho uma conta</h3>
 
-      <label for="localizacao">Localização *</label>
-      <input id="localizacao" name="localizacao"
-             type="text" maxlength="500"
-             placeholder="Ex.: Beira, Sofala" required>
+        <label for="emailLogin">E-mail</label>
+        <input
+          type="email"
+          id="emailLogin"
+          autocomplete="email"
+          required
+          maxlength="254"
+          placeholder="O teu e-mail">
 
-      <label for="telefone">Telefone *</label>
-      <input id="telefone" name="telefone"
-             type="tel" maxlength="40"
-             autocomplete="tel" required>
+        <label for="senhaLogin">Palavra-passe</label>
+        <input
+          type="password"
+          id="senhaLogin"
+          autocomplete="current-password"
+          required
+          placeholder="A tua palavra-passe">
 
-      <label for="whatsapp">WhatsApp (opcional)</label>
-      <input id="whatsapp" name="whatsapp"
-             type="tel" maxlength="40">
+        <button type="submit" id="btnEntrar">
+          Iniciar sessão
+        </button>
+      </form>
 
-      <button id="botaoEnviar" type="submit">
-        Enviar candidatura
+      <div id="mensagemLogin" class="mensagem" role="status"></div>
+
+      <button type="button" id="btnRecuperar" class="secundario">
+        Esqueci-me da palavra-passe
       </button>
 
-      <div id="mensagem" role="status"
-           aria-live="polite"></div>
-		
-<hr><h3>Documentos do profissional</h3>
+      <div id="mensagemRecuperar" class="mensagem" role="status"></div>
+    </section>
 
-<p>
-  <label for="foto">Fotografia de perfil (opcional)</label><br>
-  <input
-    type="file"
-    id="foto"
-    name="foto"
-    accept="image/jpeg,image/png,image/webp"
-  >
-</p>
+    <!-- RECUPERAÇÃO DA PALAVRA-PASSE -->
+    <section id="areaNovaSenha" class="cartao oculto">
+      <h2>Definir nova palavra-passe</h2>
 
-<p>
-  <label for="documento">Documento de identificação (obrigatório)</label><br>
-  <input
-    type="file"
-    id="documento"
-    name="documento"
-    accept="image/jpeg,image/png,application/pdf"
-    required
-  >
-</p>
+      <p>Introduz uma nova palavra-passe para a tua conta.</p>
 
-<p>
-  <label for="certificado">Certificado de formação (obrigatório)</label><br>
-  <input
-    type="file"
-    id="certificado"
-    name="certificado"
-    accept="image/jpeg,image/png,application/pdf"
-    required
-  >
-</p>
+      <form id="formNovaSenha">
+        <label for="senhaNova">Nova palavra-passe</label>
+        <input
+          type="password"
+          id="senhaNova"
+          minlength="8"
+          autocomplete="new-password"
+          required
+          placeholder="Mínimo de 8 caracteres">
 
-<div class="nota">
-<strong>Importante:</strong>
-  Os documentos de identificação e os certificados serão tratados
-  como documentos privados para análise da candidatura.
-</div>
+        <button type="submit" id="btnGuardarSenha" class="verde">
+          Guardar nova palavra-passe
+        </button>
+      </form>
 
-    </form>
+      <div id="mensagemNovaSenha" class="mensagem" role="status"></div>
+    </section>
 
-    <footer>
+    <!-- ÁREA DO PROFISSIONAL AUTENTICADO -->
+    <section id="areaProfissional" class="cartao oculto">
+      <h2>O teu espaço profissional</h2>
+
+      <div class="estado-conta">
+        <strong>Sessão iniciada.</strong>
+        <div id="emailUtilizador"></div>
+      </div>
+
+      <p>
+        Preenche os teus dados profissionais e envia os documentos necessários.
+        A tua candidatura será analisada pela equipa MediMoz.
+      </p>
+
+      <form id="formularioProfissional" enctype="multipart/form-data">
+
+        <label for="nome">Nome completo</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          maxlength="150"
+          required
+          placeholder="Nome completo">
+
+        <label for="especialidade">Especialidade ou profissão</label>
+        <input
+          type="text"
+          id="especialidade"
+          name="especialidade"
+          maxlength="150"
+          required
+          placeholder="Ex.: Médico, Enfermeiro, Técnico de laboratório">
+
+        <label for="apresentacao">Apresentação profissional</label>
+        <textarea
+          id="apresentacao"
+          name="apresentacao"
+          maxlength="3000"
+          required
+          placeholder="Fala um pouco sobre a tua experiência profissional."></textarea>
+
+        <label for="qualificacoes">Qualificações académicas e profissionais</label>
+        <textarea
+          id="qualificacoes"
+          name="qualificacoes"
+          maxlength="3000"
+          required
+          placeholder="Indica a tua formação e qualificações."></textarea>
+
+        <label for="horario">Horário de atendimento</label>
+        <textarea
+          id="horario"
+          name="horario"
+          maxlength="500"
+          required
+          placeholder="Ex.: Segunda a sexta-feira, das 8h às 16h."></textarea>
+
+        <label for="localizacao">Localização</label>
+        <input
+          type="text"
+          id="localizacao"
+          name="localizacao"
+          maxlength="500"
+          required
+          placeholder="Cidade, bairro ou local de atendimento">
+
+        <label for="telefone">Número de telefone</label>
+        <input
+          type="tel"
+          id="telefone"
+          name="telefone"
+          maxlength="40"
+          required
+          placeholder="Número de contacto">
+
+        <label for="whatsapp">Número de WhatsApp (opcional)</label>
+        <input
+          type="tel"
+          id="whatsapp"
+          name="whatsapp"
+          maxlength="40"
+          placeholder="Número de WhatsApp">
+
+        <hr class="separador">
+
+        <h3>Fotografia profissional</h3>
+
+        <label for="foto">Fotografia de perfil (opcional)</label>
+        <input
+          type="file"
+          id="foto"
+          name="foto"
+          accept="image/jpeg,image/png,image/webp">
+
+        <p class="nota">
+          Formatos permitidos: JPG, PNG ou WebP. Tamanho máximo: 5 MB.
+        </p>
+
+        <h3>Documentos para verificação</h3>
+
+        <label for="documento">Documento de identificação</label>
+        <input
+          type="file"
+          id="documento"
+          name="documento"
+          accept="image/jpeg,image/png,application/pdf"
+          required>
+
+        <p class="nota">
+          Formatos permitidos: JPG, PNG ou PDF. Tamanho máximo: 5 MB.
+        </p>
+
+        <label for="certificado">Certificado ou documento de qualificação</label>
+        <input
+          type="file"
+          id="certificado"
+          name="certificado"
+          accept="image/jpeg,image/png,application/pdf"
+          required>
+
+        <p class="nota">
+          Formatos permitidos: JPG, PNG ou PDF. Tamanho máximo: 5 MB.
+        </p>
+
+        <p class="nota">
+          Os documentos enviados serão utilizados para análise da candidatura.
+          Não serão apresentados publicamente no perfil profissional.
+        </p>
+
+        <button type="submit" id="btnEnviarCandidatura" class="verde">
+          Enviar candidatura
+        </button>
+
+      </form>
+
+      <div id="mensagemCandidatura" class="mensagem" role="status"></div>
+
+      <button type="button" id="btnTerminarSessao" class="secundario">
+        Terminar sessão
+      </button>
+    </section>
+
+    <footer class="rodape">
       MediMoz — A saúde mais perto de ti.
     </footer>
 
   </main>
-	
-	<script>
-  const ENDPOINT_SUPABASE =
-    "https://ooqvhqnqqiqltnrexmyz.supabase.co/functions/v1/registar-profissional";
 
-  /*
-   * Coloca aqui a chave PUBLISHABLE do projeto Supabase.
-   * Não uses SUPABASE_SECRET_KEY nem outra chave secreta.
-   */
-  const CHAVE_PUBLICA_SUPABASE =
-    "sb_publishable_TXPK6yBtkC7Lskj9UrqwCg_p-wsmDy8";
+  <!-- Biblioteca oficial Supabase JS v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  const formulario = document.getElementById("formulario");
-  const botaoEnviar = document.getElementById("botaoEnviar");
-  const mensagem = document.getElementById("mensagem");
+  <script>
+    "use strict";
 
-  formulario.addEventListener("submit", async function(evento) {
-    evento.preventDefault();
+    // CONFIGURAÇÃO DO SUPABASE
+    const SUPABASE_URL =
+      "https://ooqvhqnqqiqltnrexmyz.supabase.co";
 
-    mensagem.className = "";
-    mensagem.style.display = "none";
-    mensagem.textContent = "";
+    const SUPABASE_ANON_KEY =
+      "sb_publishable_TXPK6yBtkC7Lskj9UrqwCg_p-wsmDy8";
 
-    if (
-      !CHAVE_PUBLICA_SUPABASE ||
-      CHAVE_PUBLICA_SUPABASE ===
-        "COLOCA_AQUI_A_TUA_CHAVE_PUBLISHABLE"
-    ) {
-      mensagem.className = "erro";
-      mensagem.textContent =
-        "O serviço ainda não está configurado. Tenta mais tarde.";
-      mensagem.style.display = "block";
-      return;
+    const URL_DA_PAGINA =
+      "https://ernesto-domingos-doliz.github.io/medimoz-privacidade/registar-profissional.html";
+
+    const URL_FUNCAO =
+      SUPABASE_URL + "/functions/v1/registar-profissional";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    let sessaoAtual = null;
+    let modoRecuperacao = false;
+
+    // ELEMENTOS DA PÁGINA
+    const areaAutenticacao =
+      document.getElementById("areaAutenticacao");
+
+    const areaProfissional =
+      document.getElementById("areaProfissional");
+
+    const areaNovaSenha =
+      document.getElementById("areaNovaSenha");
+
+    function mostrarMensagem(id, texto, tipo) {
+      const elemento = document.getElementById(id);
+
+      elemento.textContent = texto;
+      elemento.className = "mensagem " + tipo;
     }
 
-    if (!formulario.reportValidity()) {
-      return;
+    function limparMensagem(id) {
+      const elemento = document.getElementById(id);
+
+      elemento.textContent = "";
+      elemento.className = "mensagem";
     }
 
-    const foto = formulario.elements["foto"].files[0];
-    const documento = formulario.elements["documento"].files[0];
-    const certificado = formulario.elements["certificado"].files[0];
+    function definirBotao(id, texto, desativado) {
+      const botao = document.getElementById(id);
 
-    if (!documento || !certificado) {
-      mensagem.className = "erro";
-      mensagem.textContent =
-        "Seleciona o documento de identificação e o certificado.";
-      mensagem.style.display = "block";
-      return;
+      botao.textContent = texto;
+      botao.disabled = desativado;
     }
 
-    const tamanhoMaximo = 5 * 1024 * 1024;
-
-    for (const ficheiro of [foto, documento, certificado]) {
-      if (ficheiro && ficheiro.size > tamanhoMaximo) {
-        mensagem.className = "erro";
-        mensagem.textContent =
-          "Cada ficheiro deve ter no máximo 5 MB.";
-        mensagem.style.display = "block";
+    function atualizarInterface() {
+      if (modoRecuperacao) {
+        areaAutenticacao.classList.add("oculto");
+        areaProfissional.classList.add("oculto");
+        areaNovaSenha.classList.remove("oculto");
         return;
       }
+
+      areaNovaSenha.classList.add("oculto");
+
+      if (sessaoAtual) {
+        areaAutenticacao.classList.add("oculto");
+        areaProfissional.classList.remove("oculto");
+
+        document.getElementById("emailUtilizador").textContent =
+          sessaoAtual.user.email || "Conta autenticada";
+      } else {
+        areaAutenticacao.classList.remove("oculto");
+        areaProfissional.classList.add("oculto");
+      }
     }
 
-    const dados = new FormData(formulario);
+    // CRIAR CONTA
+    document
+      .getElementById("formCriarConta")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
 
-    botaoEnviar.disabled = true;
-    botaoEnviar.textContent = "A enviar...";
-    mensagem.style.display = "block";
-    mensagem.textContent = "A enviar a candidatura. Aguarda, por favor.";
+        limparMensagem("mensagemCriarConta");
 
-    try {
-      const resposta = await fetch(ENDPOINT_SUPABASE, {
-        method: "POST",
-        headers: {
-          "apikey": CHAVE_PUBLICA_SUPABASE
-        },
-        body: dados
+        const email =
+          document.getElementById("novoEmail").value.trim();
+
+        const password =
+          document.getElementById("novaSenha").value;
+
+        if (password.length < 8) {
+          mostrarMensagem(
+            "mensagemCriarConta",
+            "A palavra-passe deve ter pelo menos 8 caracteres.",
+            "falha"
+          );
+          return;
+        }
+
+        definirBotao("btnCriarConta", "A criar conta...", true);
+
+        try {
+          const { data, error } =
+            await supabaseClient.auth.signUp({
+              email: email,
+              password: password,
+              options: {
+                emailRedirectTo: URL_DA_PAGINA
+              }
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          if (data.session) {
+            sessaoAtual = data.session;
+            atualizarInterface();
+
+            mostrarMensagem(
+              "mensagemCandidatura",
+              "Conta criada. Já podes preencher a tua candidatura.",
+              "sucesso"
+            );
+          } else {
+            mostrarMensagem(
+              "mensagemCriarConta",
+              "Conta criada! Verifica a tua caixa de entrada e confirma o teu e-mail antes de iniciar sessão. Se não encontrares a mensagem, verifica também a pasta de spam.",
+              "sucesso"
+            );
+          }
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemCriarConta",
+            error.message || "Não foi possível criar a conta.",
+            "falha"
+          );
+        } finally {
+          definirBotao("btnCriarConta", "Criar conta", false);
+        }
       });
 
-      let resultado;
+    // INICIAR SESSÃO
+    document
+      .getElementById("formEntrar")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
 
-      try {
-        resultado = await resposta.json();
-      } catch {
+        limparMensagem("mensagemLogin");
+
+        const email =
+          document.getElementById("emailLogin").value.trim();
+
+        const password =
+          document.getElementById("senhaLogin").value;
+
+        definirBotao("btnEntrar", "A iniciar sessão...", true);
+
+        try {
+          const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+              email: email,
+              password: password
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          sessaoAtual = data.session;
+          atualizarInterface();
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemLogin",
+            error.message || "Não foi possível iniciar sessão.",
+            "falha"
+          );
+        } finally {
+          definirBotao("btnEntrar", "Iniciar sessão", false);
+        }
+      });
+
+    // PEDIR RECUPERAÇÃO DA PALAVRA-PASSE
+    document
+      .getElementById("btnRecuperar")
+      .addEventListener("click", async function() {
+        limparMensagem("mensagemRecuperar");
+
+        const email = (
+          document.getElementById("emailLogin").value ||
+          document.getElementById("novoEmail").value
+        ).trim();
+
+        if (!email) {
+          mostrarMensagem(
+            "mensagemRecuperar",
+            "Introduz primeiro o teu e-mail no campo de acesso.",
+            "informacao"
+          );
+          return;
+        }
+
+        this.disabled = true;
+        this.textContent = "A enviar...";
+
+        try {
+          const { error } =
+            await supabaseClient.auth.resetPasswordForEmail(email, {
+              redirectTo: URL_DA_PAGINA
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          mostrarMensagem(
+            "mensagemRecuperar",
+            "Se existir uma conta associada a esse e-mail, receberás instruções para redefinir a palavra-passe. Verifica também a pasta de spam.",
+            "sucesso"
+          );
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemRecuperar",
+            error.message || "Não foi possível enviar o pedido.",
+            "falha"
+          );
+        } finally {
+          this.disabled = false;
+          this.textContent = "Esqueci-me da palavra-passe";
+        }
+      });
+
+    // GUARDAR NOVA PALAVRA-PASSE
+    document
+      .getElementById("formNovaSenha")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        limparMensagem("mensagemNovaSenha");
+
+        const password =
+          document.getElementById("senhaNova").value;
+
+        if (password.length < 8) {
+          mostrarMensagem(
+            "mensagemNovaSenha",
+            "A palavra-passe deve ter pelo menos 8 caracteres.",
+            "falha"
+          );
+          return;
+        }
+
+        definirBotao("btnGuardarSenha", "A guardar...", true);
+
+        try {
+          const { error } =
+            await supabaseClient.auth.updateUser({
+              password: password
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          modoRecuperacao = false;
+
+          mostrarMensagem(
+            "mensagemLogin",
+            "Palavra-passe alterada com sucesso. Já podes iniciar sessão.",
+            "sucesso"
+          );
+
+          await supabaseClient.auth.signOut();
+          sessaoAtual = null;
+
+          atualizarInterface();
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemNovaSenha",
+            error.message || "Não foi possível alterar a palavra-passe.",
+            "falha"
+          );
+        } finally {
+          definirBotao(
+            "btnGuardarSenha",
+            "Guardar nova palavra-passe",
+            false
+          );
+        }
+      });
+
+    // VALIDAR FICHEIROS ANTES DO ENVIO
+    function validarFicheiro(inputId, obrigatorio, tiposPermitidos) {
+      const input = document.getElementById(inputId);
+      const ficheiro = input.files[0];
+
+      if (!ficheiro) {
+        if (obrigatorio) {
+          throw new Error("Seleciona o ficheiro: " + input.labels[0].textContent);
+        }
+        return;
+      }
+
+      const tamanhoMaximo = 5 * 1024 * 1024;
+
+      if (ficheiro.size > tamanhoMaximo) {
         throw new Error(
-          "O serviço devolveu uma resposta inesperada. Tenta novamente."
+          "O ficheiro " + ficheiro.name + " ultrapassa o limite de 5 MB."
         );
       }
 
-      if (!resposta.ok) {
+      if (!tiposPermitidos.includes(ficheiro.type)) {
         throw new Error(
-          resultado.erro ||
-          "Não foi possível enviar a candidatura."
+          "O formato do ficheiro " + ficheiro.name + " não é permitido."
         );
       }
-
-      mensagem.className = "sucesso";
-      mensagem.textContent =
-        "Candidatura enviada com sucesso! " +
-        "O teu registo ficará pendente até ser analisado pelo administrador.";
-
-      formulario.reset();
-
-    } catch (erro) {
-      mensagem.className = "erro";
-      mensagem.textContent =
-        erro.message ||
-        "Não foi possível contactar o serviço. Tenta novamente.";
-    } finally {
-      botaoEnviar.disabled = false;
-      botaoEnviar.textContent = "Enviar candidatura";
     }
-  });
-</script>
-  
+
+    // ENVIAR CANDIDATURA
+    document
+      .getElementById("formularioProfissional")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        limparMensagem("mensagemCandidatura");
+
+        if (!sessaoAtual) {
+          mostrarMensagem(
+            "mensagemCandidatura",
+            "A tua sessão terminou. Inicia sessão novamente.",
+            "falha"
+          );
+          atualizarInterface();
+          return;
+        }
+
+        try {
+          validarFicheiro(
+            "foto",
+            false,
+            ["image/jpeg", "image/png", "image/webp"]
+          );
+
+          validarFicheiro(
+            "documento",
+            true,
+            ["image/jpeg", "image/png", "application/pdf"]
+          );
+
+          validarFicheiro(
+            "certificado",
+            true,
+            ["image/jpeg", "image/png", "application/pdf"]
+          );
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemCandidatura",
+            error.message,
+            "falha"
+          );
+          return;
+        }
+
+        const formulario =
+          document.getElementById("formularioProfissional");
+
+        const dadosFormulario = new FormData(formulario);
+
+        definirBotao(
+          "btnEnviarCandidatura",
+          "A enviar candidatura...",
+          true
+        );
+
+        try {
+          // Obter a sessão mais recente antes de enviar.
+          const { data: dadosSessao, error: erroSessao } =
+            await supabaseClient.auth.getSession();
+
+          if (erroSessao) {
+            throw erroSessao;
+          }
+
+          const sessao = dadosSessao.session;
+
+          if (!sessao || !sessao.access_token) {
+            throw new Error(
+              "A tua sessão expirou. Inicia sessão novamente."
+            );
+          }
+
+          sessaoAtual = sessao;
+
+          const resposta = await fetch(URL_FUNCAO, {
+            method: "POST",
+            headers: {
+              "apikey": SUPABASE_ANON_KEY,
+              "Authorization": "Bearer " + sessao.access_token
+            },
+            body: dadosFormulario
+          });
+
+          let resultado = {};
+
+          try {
+            resultado = await resposta.json();
+          } catch (_) {
+            resultado = {};
+          }
+
+          if (!resposta.ok) {
+            throw new Error(
+              resultado.error ||
+              resultado.message ||
+              "Não foi possível enviar a candidatura. Código: " +
+              resposta.status
+            );
+          }
+
+          mostrarMensagem(
+            "mensagemCandidatura",
+            resultado.message ||
+            resultado.mensagem ||
+            "Candidatura enviada com sucesso! O estado inicial é Pendente. A equipa MediMoz irá analisar os teus dados e documentos.",
+            "sucesso"
+          );
+
+          formulario.reset();
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemCandidatura",
+            error.message || "Ocorreu um erro ao enviar a candidatura.",
+            "falha"
+          );
+        } finally {
+          definirBotao(
+            "btnEnviarCandidatura",
+            "Enviar candidatura",
+            false
+          );
+        }
+      });
+
+    // TERMINAR SESSÃO
+    document
+      .getElementById("btnTerminarSessao")
+      .addEventListener("click", async function() {
+        this.disabled = true;
+        this.textContent = "A terminar sessão...";
+
+        try {
+          const { error } = await supabaseClient.auth.signOut();
+
+          if (error) {
+            throw error;
+          }
+
+          sessaoAtual = null;
+          modoRecuperacao = false;
+          atualizarInterface();
+
+        } catch (error) {
+          mostrarMensagem(
+            "mensagemCandidatura",
+            error.message || "Não foi possível terminar a sessão.",
+            "falha"
+          );
+        } finally {
+          this.disabled = false;
+          this.textContent = "Terminar sessão";
+        }
+      });
+
+    // DETETAR SESSÃO E RECUPERAÇÃO AO ABRIR A PÁGINA
+    async function inicializarAutenticacao() {
+      try {
+        const { data, error } =
+          await supabaseClient.auth.getSession();
+
+        if (error) {
+          throw error;
+        }
+
+        sessaoAtual = data.session;
+
+        atualizarInterface();
+
+      } catch (error) {
+        console.error("Erro ao verificar sessão:", error);
+
+        mostrarMensagem(
+          "mensagemLogin",
+          "Não foi possível verificar a sessão. Atualiza a página e tenta novamente.",
+          "falha"
+        );
+      }
+    }
+
+    supabaseClient.auth.onAuthStateChange(function(evento, sessao) {
+      sessaoAtual = sessao;
+
+      if (evento === "PASSWORD_RECOVERY") {
+        modoRecuperacao = true;
+      }
+
+      atualizarInterface();
+    });
+
+    inicializarAutenticacao();
+
+  </script>
 </body>
 </html>
