@@ -17,9 +17,7 @@
       --erro: #B42318;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -115,9 +113,7 @@
       cursor: pointer;
     }
 
-    button.verde {
-      background: var(--verde);
-    }
+    button.verde { background: var(--verde); }
 
     button.secundario {
       background: #E8F0F7;
@@ -168,9 +164,7 @@
       margin: 22px 0;
     }
 
-    .oculto {
-      display: none !important;
-    }
+    .oculto { display: none !important; }
 
     .rodape {
       text-align: center;
@@ -188,135 +182,161 @@
       margin-bottom: 15px;
     }
 
+    .cartao-estado {
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 15px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .estado-pendente {
+      background: #FFF6E5;
+      color: #815500;
+    }
+
+    .estado-aprovado {
+      background: #E8F6EF;
+      color: #12613F;
+    }
+
+    .estado-rejeitado {
+      background: #FDECEC;
+      color: #9B1C1C;
+    }
+
+    .estado-erro {
+      background: #EAF3FB;
+      color: #174B73;
+    }
+
+    .etiqueta-estado {
+      display: inline-block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
     @media (max-width: 480px) {
-      body {
-        padding: 12px 8px;
-      }
-
-      .cartao {
-        padding: 17px;
-      }
-
-      .logo {
-        font-size: 28px;
-      }
+      body { padding: 12px 8px; }
+      .cartao { padding: 17px; }
+      .logo { font-size: 28px; }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
+<main class="container">
 
-    <header class="cabecalho">
-      <div class="logo">MediMoz</div>
-      <h2>Área do Profissional de Saúde</h2>
-      <p>Cria a tua conta e candidata-te para fazer parte da rede MediMoz.</p>
-    </header>
+  <header class="cabecalho">
+    <div class="logo">MediMoz</div>
+    <h2>Área do Profissional de Saúde</h2>
+    <p>Cria a tua conta e candidata-te para fazer parte da rede MediMoz.</p>
+  </header>
 
-    <!-- ÁREA DE AUTENTICAÇÃO -->
-    <section id="areaAutenticacao" class="cartao">
-      <h2>Acesso à conta</h2>
+  <!-- AUTENTICAÇÃO -->
+  <section id="areaAutenticacao" class="cartao">
+    <h2>Acesso à conta</h2>
 
-      <p class="nota">
-        Cria uma conta com o teu e-mail ou inicia sessão se já estiveres registado.
+    <p class="nota">
+      Cria uma conta com o teu e-mail ou inicia sessão se já estiveres registado.
+    </p>
+
+    <form id="formCriarConta">
+      <h3>Criar nova conta</h3>
+
+      <label for="novoEmail">E-mail</label>
+      <input type="email" id="novoEmail" autocomplete="email"
+        required maxlength="254" placeholder="exemplo@email.com">
+
+      <label for="novaSenha">Palavra-passe</label>
+      <input type="password" id="novaSenha" autocomplete="new-password"
+        required minlength="8" placeholder="Mínimo de 8 caracteres">
+
+      <button type="submit" id="btnCriarConta" class="verde">
+        Criar conta
+      </button>
+    </form>
+
+    <div id="mensagemCriarConta" class="mensagem" role="status"></div>
+
+    <hr class="separador">
+
+    <form id="formEntrar">
+      <h3>Já tenho uma conta</h3>
+
+      <label for="emailLogin">E-mail</label>
+      <input type="email" id="emailLogin" autocomplete="email"
+        required maxlength="254" placeholder="O teu e-mail">
+
+      <label for="senhaLogin">Palavra-passe</label>
+      <input type="password" id="senhaLogin"
+        autocomplete="current-password" required
+        placeholder="A tua palavra-passe">
+
+      <button type="submit" id="btnEntrar">
+        Iniciar sessão
+      </button>
+    </form>
+
+    <div id="mensagemLogin" class="mensagem" role="status"></div>
+
+    <button type="button" id="btnRecuperar" class="secundario">
+      Esqueci-me da palavra-passe
+    </button>
+
+    <div id="mensagemRecuperar" class="mensagem" role="status"></div>
+  </section>
+
+  <!-- RECUPERAÇÃO DA PALAVRA-PASSE -->
+  <section id="areaNovaSenha" class="cartao oculto">
+    <h2>Definir nova palavra-passe</h2>
+    <p>Introduz uma nova palavra-passe para a tua conta.</p>
+
+    <form id="formNovaSenha">
+      <label for="senhaNova">Nova palavra-passe</label>
+      <input type="password" id="senhaNova" minlength="8"
+        autocomplete="new-password" required
+        placeholder="Mínimo de 8 caracteres">
+
+      <button type="submit" id="btnGuardarSenha" class="verde">
+        Guardar nova palavra-passe
+      </button>
+    </form>
+
+    <div id="mensagemNovaSenha" class="mensagem" role="status"></div>
+  </section>
+
+  <!-- ESPAÇO PROFISSIONAL -->
+  <section id="areaProfissional" class="cartao oculto">
+    <h2>O teu espaço profissional</h2>
+
+    <div class="estado-conta">
+      <strong>Sessão iniciada.</strong>
+      <div id="emailUtilizador"></div>
+    </div>
+
+    <!-- ACOMPANHAMENTO DA CANDIDATURA -->
+    <section id="areaAcompanhamento" class="oculto">
+      <h3>Acompanhamento da candidatura</h3>
+
+      <p>
+        Aqui podes consultar o estado da tua candidatura à rede MediMoz.
       </p>
 
-      <form id="formCriarConta">
-        <h3>Criar nova conta</h3>
-
-        <label for="novoEmail">E-mail</label>
-        <input
-          type="email"
-          id="novoEmail"
-          autocomplete="email"
-          required
-          maxlength="254"
-          placeholder="exemplo@email.com">
-
-        <label for="novaSenha">Palavra-passe</label>
-        <input
-          type="password"
-          id="novaSenha"
-          autocomplete="new-password"
-          required
-          minlength="8"
-          placeholder="Mínimo de 8 caracteres">
-
-        <button type="submit" id="btnCriarConta" class="verde">
-          Criar conta
-        </button>
-      </form>
-
-      <div id="mensagemCriarConta" class="mensagem" role="status"></div>
-
-      <hr class="separador">
-
-      <form id="formEntrar">
-        <h3>Já tenho uma conta</h3>
-
-        <label for="emailLogin">E-mail</label>
-        <input
-          type="email"
-          id="emailLogin"
-          autocomplete="email"
-          required
-          maxlength="254"
-          placeholder="O teu e-mail">
-
-        <label for="senhaLogin">Palavra-passe</label>
-        <input
-          type="password"
-          id="senhaLogin"
-          autocomplete="current-password"
-          required
-          placeholder="A tua palavra-passe">
-
-        <button type="submit" id="btnEntrar">
-          Iniciar sessão
-        </button>
-      </form>
-
-      <div id="mensagemLogin" class="mensagem" role="status"></div>
-
-      <button type="button" id="btnRecuperar" class="secundario">
-        Esqueci-me da palavra-passe
-      </button>
-
-      <div id="mensagemRecuperar" class="mensagem" role="status"></div>
-    </section>
-
-    <!-- RECUPERAÇÃO DA PALAVRA-PASSE -->
-    <section id="areaNovaSenha" class="cartao oculto">
-      <h2>Definir nova palavra-passe</h2>
-
-      <p>Introduz uma nova palavra-passe para a tua conta.</p>
-
-      <form id="formNovaSenha">
-        <label for="senhaNova">Nova palavra-passe</label>
-        <input
-          type="password"
-          id="senhaNova"
-          minlength="8"
-          autocomplete="new-password"
-          required
-          placeholder="Mínimo de 8 caracteres">
-
-        <button type="submit" id="btnGuardarSenha" class="verde">
-          Guardar nova palavra-passe
-        </button>
-      </form>
-
-      <div id="mensagemNovaSenha" class="mensagem" role="status"></div>
-    </section>
-
-    <!-- ÁREA DO PROFISSIONAL AUTENTICADO -->
-    <section id="areaProfissional" class="cartao oculto">
-      <h2>O teu espaço profissional</h2>
-
-      <div class="estado-conta">
-        <strong>Sessão iniciada.</strong>
-        <div id="emailUtilizador"></div>
+      <div id="conteudoEstado" class="cartao-estado estado-erro"
+        role="status" aria-live="polite">
+        A consultar a tua candidatura...
       </div>
+
+      <button type="button" id="btnAtualizarEstado" class="secundario">
+        Actualizar estado
+      </button>
+    </section>
+
+    <!-- FORMULÁRIO: SÓ APARECE QUANDO NÃO EXISTE CANDIDATURA -->
+    <div id="areaFormularioCandidatura" class="oculto">
+
+      <h3>Registo profissional</h3>
 
       <p>
         Preenche os teus dados profissionais e envia os documentos necessários.
@@ -326,82 +346,47 @@
       <form id="formularioProfissional" enctype="multipart/form-data">
 
         <label for="nome">Nome completo</label>
-        <input
-          type="text"
-          id="nome"
-          name="nome"
-          maxlength="150"
-          required
-          placeholder="Nome completo">
+        <input type="text" id="nome" name="nome"
+          maxlength="150" required placeholder="Nome completo">
 
         <label for="especialidade">Especialidade ou profissão</label>
-        <input
-          type="text"
-          id="especialidade"
-          name="especialidade"
-          maxlength="150"
-          required
+        <input type="text" id="especialidade" name="especialidade"
+          maxlength="150" required
           placeholder="Ex.: Médico, Enfermeiro, Técnico de laboratório">
 
         <label for="apresentacao">Apresentação profissional</label>
-        <textarea
-          id="apresentacao"
-          name="apresentacao"
-          maxlength="3000"
-          required
+        <textarea id="apresentacao" name="apresentacao"
+          maxlength="3000" required
           placeholder="Fala um pouco sobre a tua experiência profissional."></textarea>
 
         <label for="qualificacoes">Qualificações académicas e profissionais</label>
-        <textarea
-          id="qualificacoes"
-          name="qualificacoes"
-          maxlength="3000"
-          required
+        <textarea id="qualificacoes" name="qualificacoes"
+          maxlength="3000" required
           placeholder="Indica a tua formação e qualificações."></textarea>
 
         <label for="horario">Horário de atendimento</label>
-        <textarea
-          id="horario"
-          name="horario"
-          maxlength="500"
-          required
-          placeholder="Ex.: Segunda a sexta-feira, das 8h às 16h."></textarea>
+        <textarea id="horario" name="horario" maxlength="500"
+          required placeholder="Ex.: Segunda a sexta-feira, das 8h às 16h."></textarea>
 
         <label for="localizacao">Localização</label>
-        <input
-          type="text"
-          id="localizacao"
-          name="localizacao"
-          maxlength="500"
-          required
+        <input type="text" id="localizacao" name="localizacao"
+          maxlength="500" required
           placeholder="Cidade, bairro ou local de atendimento">
 
         <label for="telefone">Número de telefone</label>
-        <input
-          type="tel"
-          id="telefone"
-          name="telefone"
-          maxlength="40"
-          required
-          placeholder="Número de contacto">
+        <input type="tel" id="telefone" name="telefone"
+          maxlength="40" required placeholder="Número de contacto">
 
         <label for="whatsapp">Número de WhatsApp (opcional)</label>
-        <input
-          type="tel"
-          id="whatsapp"
-          name="whatsapp"
-          maxlength="40"
-          placeholder="Número de WhatsApp">
+        <input type="tel" id="whatsapp" name="whatsapp"
+          maxlength="40" placeholder="Número de WhatsApp">
 
         <hr class="separador">
 
         <h3>Fotografia profissional</h3>
 
         <label for="foto">Fotografia de perfil (opcional)</label>
-        <input
-          type="file"
-          id="foto"
-          name="foto"
+        <input type="file" id="foto" name="foto"
           accept="image/jpeg,image/png,image/webp">
 
         <p class="nota">
@@ -411,24 +396,16 @@
         <h3>Documentos para verificação</h3>
 
         <label for="documento">Documento de identificação</label>
-        <input
-          type="file"
-          id="documento"
-          name="documento"
-          accept="image/jpeg,image/png,application/pdf"
-          required>
+        <input type="file" id="documento" name="documento"
+          accept="image/jpeg,image/png,application/pdf" required>
 
         <p class="nota">
           Formatos permitidos: JPG, PNG ou PDF. Tamanho máximo: 5 MB.
         </p>
 
         <label for="certificado">Certificado ou documento de qualificação</label>
-        <input
-          type="file"
-          id="certificado"
-          name="certificado"
-          accept="image/jpeg,image/png,application/pdf"
-          required>
+        <input type="file" id="certificado" name="certificado"
+          accept="image/jpeg,image/png,application/pdf" required>
 
         <p class="nota">
           Formatos permitidos: JPG, PNG ou PDF. Tamanho máximo: 5 MB.
@@ -442,542 +419,746 @@
         <button type="submit" id="btnEnviarCandidatura" class="verde">
           Enviar candidatura
         </button>
-
       </form>
 
       <div id="mensagemCandidatura" class="mensagem" role="status"></div>
+    </div>
 
-      <button type="button" id="btnTerminarSessao" class="secundario">
-        Terminar sessão
-      </button>
-    </section>
+    <button type="button" id="btnTerminarSessao" class="secundario">
+      Terminar sessão
+    </button>
+  </section>
 
-    <footer class="rodape">
-      MediMoz — A saúde mais perto de ti.
-    </footer>
+  <footer class="rodape">
+    MediMoz — A saúde mais perto de ti.
+  </footer>
 
-  </main>
+</main>
 
-  <!-- Biblioteca oficial Supabase JS v2 -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script>
-    "use strict";
+<script>
+"use strict";
 
-    // CONFIGURAÇÃO DO SUPABASE
-    const SUPABASE_URL =
-      "https://ooqvhqnqqiqltnrexmyz.supabase.co";
+// CONFIGURAÇÃO SUPABASE
+const SUPABASE_URL =
+  "https://ooqvhqnqqiqltnrexmyz.supabase.co";
 
-    const SUPABASE_ANON_KEY =
-      "sb_publishable_TXPK6yBtkC7Lskj9UrqwCg_p-wsmDy8";
+const SUPABASE_ANON_KEY =
+  "sb_publishable_TXPK6yBtkC7Lskj9UrqwCg_p-wsmDy8";
 
-    const URL_DA_PAGINA =
-      "https://ernesto-domingos-doliz.github.io/medimoz-privacidade/registar-profissional.html";
+const URL_DA_PAGINA =
+  "https://ernesto-domingos-doliz.github.io/medimoz-privacidade/registar-profissional.html";
 
-    const URL_FUNCAO =
-      SUPABASE_URL + "/functions/v1/registar-profissional";
+const URL_FUNCAO =
+  SUPABASE_URL + "/functions/v1/registar-profissional";
 
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+let sessaoAtual = null;
+let modoRecuperacao = false;
+let consultaEstadoEmCurso = false;
+let numeroConsultaEstado = 0;
+
+// ELEMENTOS
+const areaAutenticacao =
+  document.getElementById("areaAutenticacao");
+
+const areaProfissional =
+  document.getElementById("areaProfissional");
+
+const areaNovaSenha =
+  document.getElementById("areaNovaSenha");
+
+const areaAcompanhamento =
+  document.getElementById("areaAcompanhamento");
+
+const areaFormularioCandidatura =
+  document.getElementById("areaFormularioCandidatura");
+
+const conteudoEstado =
+  document.getElementById("conteudoEstado");
+
+// MENSAGENS
+function mostrarMensagem(id, texto, tipo) {
+  const elemento = document.getElementById(id);
+  elemento.textContent = texto;
+  elemento.className = "mensagem " + tipo;
+}
+
+function limparMensagem(id) {
+  const elemento = document.getElementById(id);
+  elemento.textContent = "";
+  elemento.className = "mensagem";
+}
+
+function definirBotao(id, texto, desativado) {
+  const botao = document.getElementById(id);
+  botao.textContent = texto;
+  botao.disabled = desativado;
+}
+
+function formatarData(data) {
+  if (!data) return "";
+
+  const valor = new Date(data);
+
+  if (Number.isNaN(valor.getTime())) return "";
+
+  return valor.toLocaleString("pt-PT");
+}
+
+// MOSTRAR ESTADO DA CANDIDATURA
+function mostrarEstado(tipo, titulo, descricao, motivo, data) {
+  conteudoEstado.className = "cartao-estado " + tipo;
+
+  const tituloElemento = document.createElement("div");
+  tituloElemento.className = "etiqueta-estado";
+  tituloElemento.textContent = titulo;
+
+  const descricaoElemento = document.createElement("div");
+  descricaoElemento.textContent = descricao;
+
+  conteudoEstado.replaceChildren(
+    tituloElemento,
+    descricaoElemento
+  );
+
+  if (motivo) {
+    const motivoElemento = document.createElement("p");
+    motivoElemento.textContent = "Motivo da rejeição: " + motivo;
+    conteudoEstado.appendChild(motivoElemento);
+  }
+
+  if (data) {
+    const dataElemento = document.createElement("p");
+    dataElemento.className = "nota";
+    dataElemento.textContent = "Última actualização: " + data;
+    conteudoEstado.appendChild(dataElemento);
+  }
+}
+
+// CONSULTAR APENAS A CANDIDATURA DO UTILIZADOR AUTENTICADO
+async function consultarMinhaCandidatura() {
+  if (!sessaoAtual) return;
+
+  const numeroAtual = ++numeroConsultaEstado;
+
+  consultaEstadoEmCurso = true;
+
+  areaAcompanhamento.classList.remove("oculto");
+  areaFormularioCandidatura.classList.add("oculto");
+
+  mostrarEstado(
+    "estado-erro",
+    "A consultar...",
+    "Estamos a verificar o estado da tua candidatura.",
+    null,
+    null
+  );
+
+  definirBotao(
+    "btnAtualizarEstado",
+    "A consultar...",
+    true
+  );
+
+  try {
+    const { data: sessaoData, error: sessaoError } =
+      await supabaseClient.auth.getSession();
+
+    if (sessaoError) throw sessaoError;
+
+    const sessao = sessaoData.session;
+
+    if (!sessao || !sessao.access_token) {
+      throw new Error("A tua sessão expirou. Inicia sessão novamente.");
+    }
+
+    const { data, error } = await supabaseClient.rpc(
+      "obter_estado_minha_candidatura"
     );
 
-    let sessaoAtual = null;
-    let modoRecuperacao = false;
+    if (error) throw error;
 
-    // ELEMENTOS DA PÁGINA
-    const areaAutenticacao =
-      document.getElementById("areaAutenticacao");
-
-    const areaProfissional =
-      document.getElementById("areaProfissional");
-
-    const areaNovaSenha =
-      document.getElementById("areaNovaSenha");
-
-    function mostrarMensagem(id, texto, tipo) {
-      const elemento = document.getElementById(id);
-
-      elemento.textContent = texto;
-      elemento.className = "mensagem " + tipo;
+    // Ignorar respostas de uma sessão anterior.
+    if (
+      numeroAtual !== numeroConsultaEstado ||
+      !sessaoAtual ||
+      sessaoAtual.user.id !== sessao.user.id
+    ) {
+      return;
     }
 
-    function limparMensagem(id) {
-      const elemento = document.getElementById(id);
+    // A função RETURNS TABLE devolve uma lista.
+    const candidatura = Array.isArray(data) ? data[0] : data;
 
-      elemento.textContent = "";
-      elemento.className = "mensagem";
+    if (!candidatura) {
+      areaAcompanhamento.classList.add("oculto");
+      areaFormularioCandidatura.classList.remove("oculto");
+      return;
     }
 
-    function definirBotao(id, texto, desativado) {
-      const botao = document.getElementById(id);
+    // Se existe candidatura, o formulário fica sempre oculto.
+    areaFormularioCandidatura.classList.add("oculto");
+    areaAcompanhamento.classList.remove("oculto");
 
-      botao.textContent = texto;
-      botao.disabled = desativado;
+    const dataActualizacao = formatarData(
+      candidatura.atualizado_em || candidatura.criado_em
+    );
+
+    if (candidatura.estado === "pendente") {
+      mostrarEstado(
+        "estado-pendente",
+        "Candidatura pendente",
+        "Recebemos a tua candidatura. A equipa MediMoz ainda está a analisar os teus dados e documentos. Podes voltar a consultar esta área para verificar actualizações.",
+        null,
+        dataActualizacao
+      );
+
+    } else if (candidatura.estado === "aprovado") {
+      mostrarEstado(
+        "estado-aprovado",
+        "Candidatura aprovada",
+        "Parabéns! A tua candidatura foi aprovada. O teu perfil profissional poderá aparecer na rede de profissionais MediMoz.",
+        null,
+        dataActualizacao
+      );
+
+    } else if (candidatura.estado === "rejeitado") {
+      mostrarEstado(
+        "estado-rejeitado",
+        "Candidatura rejeitada",
+        "A tua candidatura não foi aprovada pela equipa MediMoz.",
+        candidatura.motivo_rejeicao ||
+          "Não foi indicado um motivo. Contacta a equipa MediMoz para obter esclarecimentos.",
+        dataActualizacao
+      );
+
+    } else {
+      throw new Error(
+        "Foi recebido um estado de candidatura desconhecido."
+      );
     }
 
-    function atualizarInterface() {
-      if (modoRecuperacao) {
-        areaAutenticacao.classList.add("oculto");
-        areaProfissional.classList.add("oculto");
-        areaNovaSenha.classList.remove("oculto");
-        return;
-      }
+  } catch (error) {
+    if (numeroAtual !== numeroConsultaEstado) return;
 
-      areaNovaSenha.classList.add("oculto");
+    console.error("Erro ao consultar candidatura:", error);
 
-      if (sessaoAtual) {
-        areaAutenticacao.classList.add("oculto");
-        areaProfissional.classList.remove("oculto");
+    areaAcompanhamento.classList.remove("oculto");
+    areaFormularioCandidatura.classList.add("oculto");
 
-        document.getElementById("emailUtilizador").textContent =
-          sessaoAtual.user.email || "Conta autenticada";
-      } else {
-        areaAutenticacao.classList.remove("oculto");
-        areaProfissional.classList.add("oculto");
-      }
+    mostrarEstado(
+      "estado-erro",
+      "Não foi possível consultar",
+      error.message ||
+        "Ocorreu um erro ao consultar a candidatura. Tenta novamente.",
+      null,
+      null
+    );
+
+  } finally {
+    if (numeroAtual === numeroConsultaEstado) {
+      consultaEstadoEmCurso = false;
+
+      definirBotao(
+        "btnAtualizarEstado",
+        "Actualizar estado",
+        false
+      );
     }
+  }
+}
 
-    // CRIAR CONTA
-    document
-      .getElementById("formCriarConta")
-      .addEventListener("submit", async function(event) {
-        event.preventDefault();
+// ACTUALIZAR INTERFACE
+async function processarSessao(sessao) {
+  sessaoAtual = sessao;
 
-        limparMensagem("mensagemCriarConta");
+  if (modoRecuperacao) {
+    areaAutenticacao.classList.add("oculto");
+    areaProfissional.classList.add("oculto");
+    areaNovaSenha.classList.remove("oculto");
+    return;
+  }
 
-        const email =
-          document.getElementById("novoEmail").value.trim();
+  areaNovaSenha.classList.add("oculto");
 
-        const password =
-          document.getElementById("novaSenha").value;
+  if (!sessaoAtual) {
+    numeroConsultaEstado++;
 
-        if (password.length < 8) {
-          mostrarMensagem(
-            "mensagemCriarConta",
-            "A palavra-passe deve ter pelo menos 8 caracteres.",
-            "falha"
-          );
-          return;
-        }
+    areaAutenticacao.classList.remove("oculto");
+    areaProfissional.classList.add("oculto");
+    areaAcompanhamento.classList.add("oculto");
+    areaFormularioCandidatura.classList.add("oculto");
+    return;
+  }
 
-        definirBotao("btnCriarConta", "A criar conta...", true);
+  areaAutenticacao.classList.add("oculto");
+  areaProfissional.classList.remove("oculto");
 
-        try {
-          const { data, error } =
-            await supabaseClient.auth.signUp({
-              email: email,
-              password: password,
-              options: {
-                emailRedirectTo: URL_DA_PAGINA
-              }
-            });
+  document.getElementById("emailUtilizador").textContent =
+    sessaoAtual.user.email || "Conta autenticada";
 
-          if (error) {
-            throw error;
-          }
+  // Não mostrar o formulário antes de verificar a candidatura.
+  areaFormularioCandidatura.classList.add("oculto");
 
-          if (data.session) {
-            sessaoAtual = data.session;
-            atualizarInterface();
+  await consultarMinhaCandidatura();
+}
 
-            mostrarMensagem(
-              "mensagemCandidatura",
-              "Conta criada. Já podes preencher a tua candidatura.",
-              "sucesso"
-            );
-          } else {
-            mostrarMensagem(
-              "mensagemCriarConta",
-              "Conta criada! Verifica a tua caixa de entrada e confirma o teu e-mail antes de iniciar sessão. Se não encontrares a mensagem, verifica também a pasta de spam.",
-              "sucesso"
-            );
-          }
+// CRIAR CONTA
+document.getElementById("formCriarConta")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
 
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemCriarConta",
-            error.message || "Não foi possível criar a conta.",
-            "falha"
-          );
-        } finally {
-          definirBotao("btnCriarConta", "Criar conta", false);
-        }
-      });
+  limparMensagem("mensagemCriarConta");
 
-    // INICIAR SESSÃO
-    document
-      .getElementById("formEntrar")
-      .addEventListener("submit", async function(event) {
-        event.preventDefault();
+  const email =
+    document.getElementById("novoEmail").value.trim();
 
-        limparMensagem("mensagemLogin");
+  const password =
+    document.getElementById("novaSenha").value;
 
-        const email =
-          document.getElementById("emailLogin").value.trim();
+  if (password.length < 8) {
+    mostrarMensagem(
+      "mensagemCriarConta",
+      "A palavra-passe deve ter pelo menos 8 caracteres.",
+      "falha"
+    );
+    return;
+  }
 
-        const password =
-          document.getElementById("senhaLogin").value;
+  definirBotao("btnCriarConta", "A criar conta...", true);
 
-        definirBotao("btnEntrar", "A iniciar sessão...", true);
-
-        try {
-          const { data, error } =
-            await supabaseClient.auth.signInWithPassword({
-              email: email,
-              password: password
-            });
-
-          if (error) {
-            throw error;
-          }
-
-          sessaoAtual = data.session;
-          atualizarInterface();
-
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemLogin",
-            error.message || "Não foi possível iniciar sessão.",
-            "falha"
-          );
-        } finally {
-          definirBotao("btnEntrar", "Iniciar sessão", false);
-        }
-      });
-
-    // PEDIR RECUPERAÇÃO DA PALAVRA-PASSE
-    document
-      .getElementById("btnRecuperar")
-      .addEventListener("click", async function() {
-        limparMensagem("mensagemRecuperar");
-
-        const email = (
-          document.getElementById("emailLogin").value ||
-          document.getElementById("novoEmail").value
-        ).trim();
-
-        if (!email) {
-          mostrarMensagem(
-            "mensagemRecuperar",
-            "Introduz primeiro o teu e-mail no campo de acesso.",
-            "informacao"
-          );
-          return;
-        }
-
-        this.disabled = true;
-        this.textContent = "A enviar...";
-
-        try {
-          const { error } =
-            await supabaseClient.auth.resetPasswordForEmail(email, {
-              redirectTo: URL_DA_PAGINA
-            });
-
-          if (error) {
-            throw error;
-          }
-
-          mostrarMensagem(
-            "mensagemRecuperar",
-            "Se existir uma conta associada a esse e-mail, receberás instruções para redefinir a palavra-passe. Verifica também a pasta de spam.",
-            "sucesso"
-          );
-
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemRecuperar",
-            error.message || "Não foi possível enviar o pedido.",
-            "falha"
-          );
-        } finally {
-          this.disabled = false;
-          this.textContent = "Esqueci-me da palavra-passe";
-        }
-      });
-
-    // GUARDAR NOVA PALAVRA-PASSE
-    document
-      .getElementById("formNovaSenha")
-      .addEventListener("submit", async function(event) {
-        event.preventDefault();
-
-        limparMensagem("mensagemNovaSenha");
-
-        const password =
-          document.getElementById("senhaNova").value;
-
-        if (password.length < 8) {
-          mostrarMensagem(
-            "mensagemNovaSenha",
-            "A palavra-passe deve ter pelo menos 8 caracteres.",
-            "falha"
-          );
-          return;
-        }
-
-        definirBotao("btnGuardarSenha", "A guardar...", true);
-
-        try {
-          const { error } =
-            await supabaseClient.auth.updateUser({
-              password: password
-            });
-
-          if (error) {
-            throw error;
-          }
-
-          modoRecuperacao = false;
-
-          mostrarMensagem(
-            "mensagemLogin",
-            "Palavra-passe alterada com sucesso. Já podes iniciar sessão.",
-            "sucesso"
-          );
-
-          await supabaseClient.auth.signOut();
-          sessaoAtual = null;
-
-          atualizarInterface();
-
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemNovaSenha",
-            error.message || "Não foi possível alterar a palavra-passe.",
-            "falha"
-          );
-        } finally {
-          definirBotao(
-            "btnGuardarSenha",
-            "Guardar nova palavra-passe",
-            false
-          );
-        }
-      });
-
-    // VALIDAR FICHEIROS ANTES DO ENVIO
-    function validarFicheiro(inputId, obrigatorio, tiposPermitidos) {
-      const input = document.getElementById(inputId);
-      const ficheiro = input.files[0];
-
-      if (!ficheiro) {
-        if (obrigatorio) {
-          throw new Error("Seleciona o ficheiro: " + input.labels[0].textContent);
-        }
-        return;
+  try {
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: URL_DA_PAGINA
       }
-
-      const tamanhoMaximo = 5 * 1024 * 1024;
-
-      if (ficheiro.size > tamanhoMaximo) {
-        throw new Error(
-          "O ficheiro " + ficheiro.name + " ultrapassa o limite de 5 MB."
-        );
-      }
-
-      if (!tiposPermitidos.includes(ficheiro.type)) {
-        throw new Error(
-          "O formato do ficheiro " + ficheiro.name + " não é permitido."
-        );
-      }
-    }
-
-    // ENVIAR CANDIDATURA
-    document
-      .getElementById("formularioProfissional")
-      .addEventListener("submit", async function(event) {
-        event.preventDefault();
-
-        limparMensagem("mensagemCandidatura");
-
-        if (!sessaoAtual) {
-          mostrarMensagem(
-            "mensagemCandidatura",
-            "A tua sessão terminou. Inicia sessão novamente.",
-            "falha"
-          );
-          atualizarInterface();
-          return;
-        }
-
-        try {
-          validarFicheiro(
-            "foto",
-            false,
-            ["image/jpeg", "image/png", "image/webp"]
-          );
-
-          validarFicheiro(
-            "documento",
-            true,
-            ["image/jpeg", "image/png", "application/pdf"]
-          );
-
-          validarFicheiro(
-            "certificado",
-            true,
-            ["image/jpeg", "image/png", "application/pdf"]
-          );
-
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemCandidatura",
-            error.message,
-            "falha"
-          );
-          return;
-        }
-
-        const formulario =
-          document.getElementById("formularioProfissional");
-
-        const dadosFormulario = new FormData(formulario);
-
-        definirBotao(
-          "btnEnviarCandidatura",
-          "A enviar candidatura...",
-          true
-        );
-
-        try {
-          // Obter a sessão mais recente antes de enviar.
-          const { data: dadosSessao, error: erroSessao } =
-            await supabaseClient.auth.getSession();
-
-          if (erroSessao) {
-            throw erroSessao;
-          }
-
-          const sessao = dadosSessao.session;
-
-          if (!sessao || !sessao.access_token) {
-            throw new Error(
-              "A tua sessão expirou. Inicia sessão novamente."
-            );
-          }
-
-          sessaoAtual = sessao;
-
-          const resposta = await fetch(URL_FUNCAO, {
-            method: "POST",
-            headers: {
-              "apikey": SUPABASE_ANON_KEY,
-              "Authorization": "Bearer " + sessao.access_token
-            },
-            body: dadosFormulario
-          });
-
-          let resultado = {};
-
-          try {
-            resultado = await resposta.json();
-          } catch (_) {
-            resultado = {};
-          }
-
-          if (!resposta.ok) {
-            throw new Error(
-              resultado.error ||
-              resultado.message ||
-              "Não foi possível enviar a candidatura. Código: " +
-              resposta.status
-            );
-          }
-
-          mostrarMensagem(
-            "mensagemCandidatura",
-            resultado.message ||
-            resultado.mensagem ||
-            "Candidatura enviada com sucesso! O estado inicial é Pendente. A equipa MediMoz irá analisar os teus dados e documentos.",
-            "sucesso"
-          );
-
-          formulario.reset();
-
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemCandidatura",
-            error.message || "Ocorreu um erro ao enviar a candidatura.",
-            "falha"
-          );
-        } finally {
-          definirBotao(
-            "btnEnviarCandidatura",
-            "Enviar candidatura",
-            false
-          );
-        }
-      });
-
-    // TERMINAR SESSÃO
-    document
-      .getElementById("btnTerminarSessao")
-      .addEventListener("click", async function() {
-        this.disabled = true;
-        this.textContent = "A terminar sessão...";
-
-        try {
-          const { error } = await supabaseClient.auth.signOut();
-
-          if (error) {
-            throw error;
-          }
-
-          sessaoAtual = null;
-          modoRecuperacao = false;
-          atualizarInterface();
-
-        } catch (error) {
-          mostrarMensagem(
-            "mensagemCandidatura",
-            error.message || "Não foi possível terminar a sessão.",
-            "falha"
-          );
-        } finally {
-          this.disabled = false;
-          this.textContent = "Terminar sessão";
-        }
-      });
-
-    // DETETAR SESSÃO E RECUPERAÇÃO AO ABRIR A PÁGINA
-    async function inicializarAutenticacao() {
-      try {
-        const { data, error } =
-          await supabaseClient.auth.getSession();
-
-        if (error) {
-          throw error;
-        }
-
-        sessaoAtual = data.session;
-
-        atualizarInterface();
-
-      } catch (error) {
-        console.error("Erro ao verificar sessão:", error);
-
-        mostrarMensagem(
-          "mensagemLogin",
-          "Não foi possível verificar a sessão. Atualiza a página e tenta novamente.",
-          "falha"
-        );
-      }
-    }
-
-    supabaseClient.auth.onAuthStateChange(function(evento, sessao) {
-      sessaoAtual = sessao;
-
-      if (evento === "PASSWORD_RECOVERY") {
-        modoRecuperacao = true;
-      }
-
-      atualizarInterface();
     });
 
-    inicializarAutenticacao();
+    if (error) throw error;
 
-  </script>
+    if (data.session) {
+      modoRecuperacao = false;
+      await processarSessao(data.session);
+
+    } else {
+      mostrarMensagem(
+        "mensagemCriarConta",
+        "Conta criada! Verifica a tua caixa de entrada e confirma o teu e-mail antes de iniciar sessão. Verifica também a pasta de spam.",
+        "sucesso"
+      );
+    }
+
+  } catch (error) {
+    mostrarMensagem(
+      "mensagemCriarConta",
+      error.message || "Não foi possível criar a conta.",
+      "falha"
+    );
+  } finally {
+    definirBotao("btnCriarConta", "Criar conta", false);
+  }
+});
+
+// INICIAR SESSÃO
+document.getElementById("formEntrar")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  limparMensagem("mensagemLogin");
+
+  const email =
+    document.getElementById("emailLogin").value.trim();
+
+  const password =
+    document.getElementById("senhaLogin").value;
+
+  definirBotao("btnEntrar", "A iniciar sessão...", true);
+
+  try {
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if (error) throw error;
+
+    modoRecuperacao = false;
+    await processarSessao(data.session);
+
+  } catch (error) {
+    mostrarMensagem(
+      "mensagemLogin",
+      error.message || "Não foi possível iniciar sessão.",
+      "falha"
+    );
+  } finally {
+    definirBotao("btnEntrar", "Iniciar sessão", false);
+  }
+});
+
+// RECUPERAR PALAVRA-PASSE
+document.getElementById("btnRecuperar")
+.addEventListener("click", async function() {
+  limparMensagem("mensagemRecuperar");
+
+  const email = (
+    document.getElementById("emailLogin").value ||
+    document.getElementById("novoEmail").value
+  ).trim();
+
+  if (!email) {
+    mostrarMensagem(
+      "mensagemRecuperar",
+      "Introduz primeiro o teu e-mail no campo de acesso.",
+      "informacao"
+    );
+    return;
+  }
+
+  this.disabled = true;
+  this.textContent = "A enviar...";
+
+  try {
+    const { error } =
+      await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: URL_DA_PAGINA
+      });
+
+    if (error) throw error;
+
+    mostrarMensagem(
+      "mensagemRecuperar",
+      "Se existir uma conta associada a esse e-mail, receberás instruções para redefinir a palavra-passe. Verifica também a pasta de spam.",
+      "sucesso"
+    );
+
+  } catch (error) {
+    mostrarMensagem(
+      "mensagemRecuperar",
+      error.message || "Não foi possível enviar o pedido.",
+      "falha"
+    );
+  } finally {
+    this.disabled = false;
+    this.textContent = "Esqueci-me da palavra-passe";
+  }
+});
+
+// GUARDAR NOVA PALAVRA-PASSE
+document.getElementById("formNovaSenha")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  limparMensagem("mensagemNovaSenha");
+
+  const password =
+    document.getElementById("senhaNova").value;
+
+  if (password.length < 8) {
+    mostrarMensagem(
+      "mensagemNovaSenha",
+      "A palavra-passe deve ter pelo menos 8 caracteres.",
+      "falha"
+    );
+    return;
+  }
+
+  definirBotao("btnGuardarSenha", "A guardar...", true);
+
+  try {
+    const { error } = await supabaseClient.auth.updateUser({
+      password
+    });
+
+    if (error) throw error;
+
+    modoRecuperacao = false;
+
+    await supabaseClient.auth.signOut();
+    sessaoAtual = null;
+
+    await processarSessao(null);
+
+    mostrarMensagem(
+      "mensagemLogin",
+      "Palavra-passe alterada com sucesso. Já podes iniciar sessão.",
+      "sucesso"
+    );
+
+  } catch (error) {
+    mostrarMensagem(
+      "mensagemNovaSenha",
+      error.message || "Não foi possível alterar a palavra-passe.",
+      "falha"
+    );
+  } finally {
+    definirBotao(
+      "btnGuardarSenha",
+      "Guardar nova palavra-passe",
+      false
+    );
+  }
+});
+
+// VALIDAR FICHEIROS
+function validarFicheiro(inputId, obrigatorio, tiposPermitidos) {
+  const input = document.getElementById(inputId);
+  const ficheiro = input.files[0];
+
+  if (!ficheiro) {
+    if (obrigatorio) {
+      throw new Error(
+        "Selecciona o ficheiro: " + input.labels[0].textContent
+      );
+    }
+    return;
+  }
+
+  const tamanhoMaximo = 5 * 1024 * 1024;
+
+  if (ficheiro.size > tamanhoMaximo) {
+    throw new Error(
+      "O ficheiro " + ficheiro.name +
+      " ultrapassa o limite de 5 MB."
+    );
+  }
+
+  if (!tiposPermitidos.includes(ficheiro.type)) {
+    throw new Error(
+      "O formato do ficheiro " + ficheiro.name +
+      " não é permitido."
+    );
+  }
+}
+
+// ENVIAR CANDIDATURA
+document.getElementById("formularioProfissional")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  limparMensagem("mensagemCandidatura");
+
+  if (!sessaoAtual) {
+    mostrarMensagem(
+      "mensagemCandidatura",
+      "A tua sessão terminou. Inicia sessão novamente.",
+      "falha"
+    );
+    await processarSessao(null);
+    return;
+  }
+
+  // Verificar novamente antes de permitir o envio.
+  areaFormularioCandidatura.classList.add("oculto");
+
+  if (consultaEstadoEmCurso) {
+    mostrarMensagem(
+      "mensagemCandidatura",
+      "Aguarda pela verificação da tua candidatura.",
+      "informacao"
+    );
+    return;
+  }
+
+  try {
+    validarFicheiro(
+      "foto",
+      false,
+      ["image/jpeg", "image/png", "image/webp"]
+    );
+
+    validarFicheiro(
+      "documento",
+      true,
+      ["image/jpeg", "image/png", "application/pdf"]
+    );
+
+    validarFicheiro(
+      "certificado",
+      true,
+      ["image/jpeg", "image/png", "application/pdf"]
+    );
+
+  } catch (error) {
+    areaFormularioCandidatura.classList.remove("oculto");
+
+    mostrarMensagem(
+      "mensagemCandidatura",
+      error.message,
+      "falha"
+    );
+    return;
+  }
+
+  const formulario =
+    document.getElementById("formularioProfissional");
+
+  const dadosFormulario = new FormData(formulario);
+
+  definirBotao(
+    "btnEnviarCandidatura",
+    "A enviar candidatura...",
+    true
+  );
+
+  try {
+    const { data: dadosSessao, error: erroSessao } =
+      await supabaseClient.auth.getSession();
+
+    if (erroSessao) throw erroSessao;
+
+    const sessao = dadosSessao.session;
+
+    if (!sessao || !sessao.access_token) {
+      throw new Error(
+        "A tua sessão expirou. Inicia sessão novamente."
+      );
+    }
+
+    sessaoAtual = sessao;
+
+    const resposta = await fetch(URL_FUNCAO, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + sessao.access_token
+      },
+      body: dadosFormulario
+    });
+
+    let resultado = {};
+
+    try {
+      resultado = await resposta.json();
+    } catch (_) {
+      resultado = {};
+    }
+
+    if (!resposta.ok) {
+      throw new Error(
+        resultado.error ||
+        resultado.message ||
+        "Não foi possível enviar a candidatura. Código: " +
+        resposta.status
+      );
+    }
+
+    formulario.reset();
+
+    mostrarMensagem(
+      "mensagemCandidatura",
+      resultado.message ||
+      resultado.mensagem ||
+      "Candidatura enviada com sucesso. A consultar o estado...",
+      "sucesso"
+    );
+
+    // Depois do envio, consultar o estado verdadeiro na base de dados.
+    await consultarMinhaCandidatura();
+
+  } catch (error) {
+    console.error("Erro ao enviar candidatura:", error);
+
+    areaFormularioCandidatura.classList.remove("oculto");
+
+    mostrarMensagem(
+      "mensagemCandidatura",
+      error.message || "Ocorreu um erro ao enviar a candidatura.",
+      "falha"
+    );
+
+  } finally {
+    definirBotao(
+      "btnEnviarCandidatura",
+      "Enviar candidatura",
+      false
+    );
+  }
+});
+
+// ACTUALIZAR ESTADO MANUALMENTE
+document.getElementById("btnAtualizarEstado")
+.addEventListener("click", async function() {
+  if (!sessaoAtual) {
+    await processarSessao(null);
+    return;
+  }
+
+  await consultarMinhaCandidatura();
+});
+
+// TERMINAR SESSÃO
+document.getElementById("btnTerminarSessao")
+.addEventListener("click", async function() {
+  this.disabled = true;
+  this.textContent = "A terminar sessão...";
+
+  try {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) throw error;
+
+    modoRecuperacao = false;
+    await processarSessao(null);
+
+  } catch (error) {
+    mostrarMensagem(
+      "mensagemCandidatura",
+      error.message || "Não foi possível terminar a sessão.",
+      "falha"
+    );
+  } finally {
+    this.disabled = false;
+    this.textContent = "Terminar sessão";
+  }
+});
+
+// DETECTAR ALTERAÇÕES NA AUTENTICAÇÃO
+supabaseClient.auth.onAuthStateChange(function(evento, sessao) {
+  if (evento === "PASSWORD_RECOVERY") {
+    modoRecuperacao = true;
+  }
+
+  // Evitar executar operações assíncronas dentro do callback de autenticação.
+  Promise.resolve().then(function() {
+    return processarSessao(sessao);
+  }).catch(function(error) {
+    console.error("Erro ao actualizar a sessão:", error);
+  });
+});
+
+// INICIALIZAÇÃO
+async function inicializarAutenticacao() {
+  try {
+    const { data, error } =
+      await supabaseClient.auth.getSession();
+
+    if (error) throw error;
+
+    await processarSessao(data.session);
+
+  } catch (error) {
+    console.error("Erro ao verificar sessão:", error);
+
+    mostrarMensagem(
+      "mensagemLogin",
+      "Não foi possível verificar a sessão. Actualiza a página e tenta novamente.",
+      "falha"
+    );
+  }
+}
+
+inicializarAutenticacao();
+
+</script>
 </body>
 </html>
