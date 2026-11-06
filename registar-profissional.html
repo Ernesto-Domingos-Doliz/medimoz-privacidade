@@ -1,4 +1,4 @@
-<!-- CODIGO DE LOGIN E REGISTO DOS TECNICO-->
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -315,7 +315,7 @@
       <div id="emailUtilizador"></div>
     </div>
 
-    <!-- ACOMPANHAMENTO DA CANDIDATURA -->
+    <!-- ACOMPANHAMENTO -->
     <section id="areaAcompanhamento" class="oculto">
       <h3>Acompanhamento da candidatura</h3>
 
@@ -323,17 +323,19 @@
         Aqui podes consultar o estado da tua candidatura à rede MediMoz.
       </p>
 
-      <div id="conteudoEstado" class="cartao-estado estado-erro"
+      <div id="conteudoEstado"
+        class="cartao-estado estado-erro"
         role="status" aria-live="polite">
         A consultar a tua candidatura...
       </div>
 
-      <button type="button" id="btnAtualizarEstado" class="secundario">
+      <button type="button" id="btnAtualizarEstado"
+        class="secundario">
         Actualizar estado
       </button>
     </section>
 
-    <!-- FORMULÁRIO: SÓ APARECE QUANDO NÃO EXISTE CANDIDATURA -->
+    <!-- FORMULÁRIO -->
     <div id="areaFormularioCandidatura" class="oculto">
 
       <h3>Registo profissional</h3>
@@ -511,7 +513,7 @@ function formatarData(data) {
   return valor.toLocaleString("pt-PT");
 }
 
-// MOSTRAR ESTADO DA CANDIDATURA
+// MOSTRAR ESTADO
 function mostrarEstado(tipo, titulo, descricao, motivo, data) {
   conteudoEstado.className = "cartao-estado " + tipo;
 
@@ -541,11 +543,12 @@ function mostrarEstado(tipo, titulo, descricao, motivo, data) {
   }
 }
 
-// CONSULTAR APENAS A CANDIDATURA DO UTILIZADOR AUTENTICADO
+// CONSULTAR CANDIDATURA
 async function consultarMinhaCandidatura() {
   if (!sessaoAtual) return;
 
   const numeroAtual = ++numeroConsultaEstado;
+  const utilizadorId = sessaoAtual.user.id;
 
   consultaEstadoEmCurso = true;
 
@@ -554,7 +557,7 @@ async function consultarMinhaCandidatura() {
 
   mostrarEstado(
     "estado-erro",
-    "A consultar...",
+    "A consultar a tua candidatura...",
     "Estamos a verificar o estado da tua candidatura.",
     null,
     null
@@ -578,22 +581,24 @@ async function consultarMinhaCandidatura() {
       throw new Error("A tua sessão expirou. Inicia sessão novamente.");
     }
 
+    if (sessao.user.id !== utilizadorId) {
+      throw new Error("A sessão foi alterada. Inicia sessão novamente.");
+    }
+
     const { data, error } = await supabaseClient.rpc(
       "obter_estado_minha_candidatura"
     );
 
     if (error) throw error;
 
-    // Ignorar respostas de uma sessão anterior.
     if (
       numeroAtual !== numeroConsultaEstado ||
       !sessaoAtual ||
-      sessaoAtual.user.id !== sessao.user.id
+      sessaoAtual.user.id !== utilizadorId
     ) {
       return;
     }
 
-    // A função RETURNS TABLE devolve uma lista.
     const candidatura = Array.isArray(data) ? data[0] : data;
 
     if (!candidatura) {
@@ -602,7 +607,6 @@ async function consultarMinhaCandidatura() {
       return;
     }
 
-    // Se existe candidatura, o formulário fica sempre oculto.
     areaFormularioCandidatura.classList.add("oculto");
     areaAcompanhamento.classList.remove("oculto");
 
@@ -614,7 +618,7 @@ async function consultarMinhaCandidatura() {
       mostrarEstado(
         "estado-pendente",
         "Candidatura pendente",
-        "Recebemos a tua candidatura. A equipa MediMoz ainda está a analisar os teus dados e documentos. Podes voltar a consultar esta área para verificar actualizações.",
+        "Recebemos a tua candidatura. A equipa MediMoz ainda está a analisar os teus dados e documentos.",
         null,
         dataActualizacao
       );
@@ -674,7 +678,7 @@ async function consultarMinhaCandidatura() {
   }
 }
 
-// ACTUALIZAR INTERFACE
+// PROCESSAR SESSÃO
 async function processarSessao(sessao) {
   sessaoAtual = sessao;
 
@@ -689,6 +693,7 @@ async function processarSessao(sessao) {
 
   if (!sessaoAtual) {
     numeroConsultaEstado++;
+    consultaEstadoEmCurso = false;
 
     areaAutenticacao.classList.remove("oculto");
     areaProfissional.classList.add("oculto");
@@ -703,7 +708,7 @@ async function processarSessao(sessao) {
   document.getElementById("emailUtilizador").textContent =
     sessaoAtual.user.email || "Conta autenticada";
 
-  // Não mostrar o formulário antes de verificar a candidatura.
+  areaAcompanhamento.classList.remove("oculto");
   areaFormularioCandidatura.classList.add("oculto");
 
   await consultarMinhaCandidatura();
@@ -747,7 +752,6 @@ document.getElementById("formCriarConta")
     if (data.session) {
       modoRecuperacao = false;
       await processarSessao(data.session);
-
     } else {
       mostrarMensagem(
         "mensagemCriarConta",
@@ -883,9 +887,12 @@ document.getElementById("formNovaSenha")
 
     modoRecuperacao = false;
 
-    await supabaseClient.auth.signOut();
-    sessaoAtual = null;
+    const { error: erroSaida } =
+      await supabaseClient.auth.signOut();
 
+    if (erroSaida) throw erroSaida;
+
+    sessaoAtual = null;
     await processarSessao(null);
 
     mostrarMensagem(
@@ -957,9 +964,6 @@ document.getElementById("formularioProfissional")
     return;
   }
 
-  // Verificar novamente antes de permitir o envio.
-  areaFormularioCandidatura.classList.add("oculto");
-
   if (consultaEstadoEmCurso) {
     mostrarMensagem(
       "mensagemCandidatura",
@@ -968,6 +972,8 @@ document.getElementById("formularioProfissional")
     );
     return;
   }
+
+  areaFormularioCandidatura.classList.add("oculto");
 
   try {
     validarFicheiro(
@@ -1062,7 +1068,6 @@ document.getElementById("formularioProfissional")
       "sucesso"
     );
 
-    // Depois do envio, consultar o estado verdadeiro na base de dados.
     await consultarMinhaCandidatura();
 
   } catch (error) {
@@ -1085,7 +1090,7 @@ document.getElementById("formularioProfissional")
   }
 });
 
-// ACTUALIZAR ESTADO MANUALMENTE
+// ACTUALIZAR ESTADO
 document.getElementById("btnAtualizarEstado")
 .addEventListener("click", async function() {
   if (!sessaoAtual) {
@@ -1122,13 +1127,12 @@ document.getElementById("btnTerminarSessao")
   }
 });
 
-// DETECTAR ALTERAÇÕES NA AUTENTICAÇÃO
+// ALTERAÇÕES NA AUTENTICAÇÃO
 supabaseClient.auth.onAuthStateChange(function(evento, sessao) {
   if (evento === "PASSWORD_RECOVERY") {
     modoRecuperacao = true;
   }
 
-  // Evitar executar operações assíncronas dentro do callback de autenticação.
   Promise.resolve().then(function() {
     return processarSessao(sessao);
   }).catch(function(error) {
